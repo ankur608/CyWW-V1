@@ -10,7 +10,7 @@
 ---
 
 ## 🌐 Live Web Hosting via GitHub Pages
-
+### https://ankur608.github.io/CyWW-V1/
 CyWW ActiveAI v1.0.0 is fully packaged as a **100% static, client-side, zero-dependency progressive web application (PWA)** that can be hosted directly on GitHub Pages with zero server setup required.
 
 ### 🚀 1-Click GitHub Pages Deployment
