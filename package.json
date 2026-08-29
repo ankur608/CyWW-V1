@@ -2,6 +2,7 @@
   "name": "cyww-core",
   "version": "1.0.0",
   "description": "CyWW Zero Trust Military-Grade Anti-Phishing Defense Engine",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "build": "tsc",
