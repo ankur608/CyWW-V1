@@ -155,7 +155,7 @@ CyWW/
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](https://github.com/ankur608/CyWW-V1/blob/main/docs/LICENSE) file for details.
 
 ---
 *CyWW ActiveAI™ v1.0.0 — Licensed under MIT for Academic purposes.*
