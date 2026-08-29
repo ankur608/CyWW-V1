@@ -1,0 +1,16 @@
+{
+  "name": "cyww-core",
+  "version": "1.0.0",
+  "description": "CyWW Zero Trust Military-Grade Anti-Phishing Defense Engine",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "serve": "node serve.js",
+    "start": "node serve.js",
+    "sync:pages": "node -e \"const fs=require('fs'); fs.cpSync('dashboard', 'docs', {recursive:true}); fs.cpSync('dashboard', '.', {recursive:false});\""
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.260",
+    "typescript": "^5.3.3"
+  }
+}

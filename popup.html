@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CyWW Zero Trust Console</title>
+  <style>
+    :root {
+      --bg-main: #0b0f19;
+      --bg-card: #131b2e;
+      --bg-card-alt: #1a243d;
+      --border-color: #243254;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --accent-purple: #8b5cf6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, monospace, sans-serif;
+    }
+
+    body {
+      width: 460px;
+      min-height: 560px;
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      font-size: 13px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      background: linear-gradient(180deg, #162038 0%, #0f172a 100%);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      background: radial-gradient(circle, #10b981 0%, #064e3b 100%);
+      border: 1px solid #34d399;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 16px;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+    }
+
+    .brand-sub {
+      font-size: 10px;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #059669;
+      color: #34d399;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 6px #10b981;
+    }
+
+    nav.tab-nav {
+      display: flex;
+      background: #0f172a;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      padding: 10px 8px;
+      color: var(--text-secondary);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-cyan);
+      border-bottom-color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.08);
+    }
+
+    .content-area {
+      padding: 14px 16px;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Domain assessment display */
+    .origin-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #38bdf8;
+      word-break: break-all;
+      font-family: monospace;
+    }
+
+    .gauge-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+    }
+
+    .gauge-score {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent-green);
+    }
+
+    .gauge-score.high-risk {
+      color: var(--accent-red);
+    }
+
+    .gauge-score.medium-risk {
+      color: var(--accent-amber);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .metric-box {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 8px;
+    }
+
+    .metric-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .metric-val {
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffffff;
+      font-family: monospace;
+    }
+
+    .token-box {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      padding: 8px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 10px;
+      color: #94a3b8;
+      word-break: break-all;
+      user-select: all;
+      margin-top: 6px;
+      max-height: 60px;
+      overflow-y: auto;
+    }
+
+    /* Action Buttons */
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 9px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: #0369a1;
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid #ef4444;
+      color: #f87171;
+    }
+    .btn-danger:hover {
+      background: #ef4444;
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid var(--border-color);
+    }
+    .btn-secondary:hover {
+      background: #334155;
+    }
+
+    /* Threat Ledger List */
+    .ledger-list {
+      max-height: 380px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .incident-item {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--accent-red);
+      border-radius: 6px;
+      padding: 10px;
+    }
+
+    .incident-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .incident-id {
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 11px;
+      color: #f87171;
+    }
+
+    .incident-time {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .mitre-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid #8b5cf6;
+      color: #c4b5fd;
+      margin-right: 4px;
+      margin-top: 4px;
+    }
+
+    /* Simulation Sandbox Form */
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 11px;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 8px 10px;
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: #ffffff;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+    }
+
+    .sim-result-box {
+      margin-top: 12px;
+      background: #090d16;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 11px;
+      color: #38bdf8;
+      white-space: pre-wrap;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
+    .empty-msg {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand-group">
+      <div class="brand-icon">🛡️</div>
+      <div>
+        <div class="brand-title">CyWW Defense Console</div>
+        <div class="brand-sub">Zero Trust Endpoint Core v1.0</div>
+      </div>
+    </div>
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      <span>ENFORCING</span>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="tab-live">
+      <span>🛡️</span> Live Tab
+    </button>
+    <button class="tab-btn" data-tab="tab-ledger">
+      <span>📋</span> Threat Ledger
+    </button>
+    <button class="tab-btn" data-tab="tab-sandbox">
+      <span>⚡</span> Threat Lab
+    </button>
+  </nav>
+
+  <main class="content-area">
+    <!-- TAB 1: LIVE TAB ZTA -->
+    <div id="tab-live" class="tab-pane active">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Inspected Origin</span>
+          <span id="tab-policy-status" class="status-badge" style="background: rgba(6,182,212,0.15); border-color:#0284c7; color:#38bdf8;">ACTIVE</span>
+        </div>
+        <div id="tab-origin" class="origin-title">Analyzing active tab...</div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">ZTA Security Health</span>
+          <span class="card-title" id="risk-rating-label">ASSESSING</span>
+        </div>
+        <div class="gauge-wrapper">
+          <div>
+            <div id="health-score" class="gauge-score">100%</div>
+            <div style="font-size: 10px; color: var(--text-muted);">Attestation Confidence</div>
+          </div>
+          <div style="text-align: right;">
+            <div id="risk-score" class="gauge-score" style="font-size: 22px; color: var(--text-secondary);">0/100</div>
+            <div style="font-size: 10px; color: var(--text-muted);">Composite Threat Risk</div>
+          </div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric-box">
+            <div class="metric-label">IDN Homograph</div>
+            <div id="metric-homograph" class="metric-val">CLEAN</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Visual SSIM</div>
+            <div id="metric-ssim" class="metric-val">&lt; 0.15 (Nominal)</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">Brand Match</div>
+            <div id="metric-brand" class="metric-val">NONE</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-label">DOM Form Shield</div>
+            <div id="metric-form-shield" class="metric-val">ARMED</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Cryptographic Attestation Token (HMAC-SHA256)</span>
+        </div>
+        <div id="attestation-token-preview" class="token-box">
+          Generating cryptographic session token...
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button id="btn-deep-audit" class="btn btn-primary">
+          <span>🔍</span> Deep Page Audit
+        </button>
+        <button id="btn-lockdown-tab" class="btn btn-danger">
+          <span>🛑</span> Isolate Tab (ZTA)
+        </button>
+      </div>
+    </div>
+
+    <!-- TAB 2: THREAT LEDGER -->
+    <div id="tab-ledger" class="tab-pane">
+      <div class="card" style="margin-bottom: 8px;">
+        <div class="card-header">
+          <span class="card-title">MITRE ATT&CK / ATLAS Incidents</span>
+          <div style="display: flex; gap: 6px;">
+            <button id="btn-export-json" class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">JSON</button>
+            <button id="btn-export-md" class="btn btn-secondary" style="padding: 4px 8px; font-size: 11px;">Markdown</button>
+            <button id="btn-clear-ledger" class="btn btn-danger" style="padding: 4px 8px; font-size: 11px;">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="ledger-container" class="ledger-list">
+        <div class="empty-msg">No security incidents detected. System is secure.</div>
+      </div>
+    </div>
+
+    <!-- TAB 3: THREAT LAB / SANDBOX -->
+    <div id="tab-sandbox" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Simulate Homograph & Typo-Squatting</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="sim-domain-input">Target Domain to Test:</label>
+          <input id="sim-domain-input" class="form-input" type="text" value="gооgle.com" placeholder="e.g. gооgle.com (with Cyrillic o)" />
+        </div>
+        <div class="btn-group">
+          <button id="btn-test-homograph" class="btn btn-primary">
+            <span>⚡</span> Test Homograph Engine
+          </button>
+          <button id="btn-test-presets" class="btn btn-secondary">
+            <span>🎲</span> Next Preset
+          </button>
+        </div>
+        <div id="sim-output" class="sim-result-box">Click 'Test Homograph Engine' to run live heuristics.</div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Adversarial Shannon Entropy Tester</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="sim-entropy-input">Sample Script or Payload String:</label>
+          <input id="sim-entropy-input" class="form-input" type="text" value="eval(unescape('%75%6E%65%73%63%61%70%65'))" />
+        </div>
+        <button id="btn-test-entropy" class="btn btn-secondary" style="width: 100%;">
+          <span>📊</span> Compute Shannon Entropy
+        </button>
+        <div id="entropy-output" class="sim-result-box" style="margin-top: 8px;">Awaiting entropy calculation.</div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="dist/popup.js"></script>
+</body>
+</html>
