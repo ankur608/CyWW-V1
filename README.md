@@ -1,7 +1,8 @@
-# CyWW ActiveAI™ (v1.0.0) built using Antigravity 2.0
-### Zero Trust Anti-Phishing & Threat Operations Suite
+# CyWW ActiveAI™ (v1.0.0)
+### Military-Grade Zero Trust Anti-Phishing Defense & Autonomous Threat Operations Suite
 
 [![Status](https://img.shields.io/badge/Release-V1.0.0_Production-00ff9d?style=for-the-badge&logo=github)](https://github.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![Security Posture](https://img.shields.io/badge/Security_Score-100%25_Defense--Grade-00e5ff?style=for-the-badge)](https://github.com)
 [![Compliance](https://img.shields.io/badge/Compliance-SOC_2_|_GDPR_|_ISO_27001-ff6b00?style=for-the-badge)](https://github.com)
 [![Deployment](https://img.shields.io/badge/GitHub_Pages-Ready-purple?style=for-the-badge&logo=githubpages)](https://github.com)
@@ -151,4 +152,10 @@ CyWW/
 * **W3C & IETF**: RFC 5322, RFC 7208 (SPF), RFC 6376 (DKIM), RFC 7489 (DMARC)
 
 ---
-*CyWW ActiveAI™ v1.0.0 — Licensed for Academic Research.*
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+*CyWW ActiveAI™ v1.0.0 — Licensed under MIT for Global Cyber Defense, Enterprise & Academic Research.*
